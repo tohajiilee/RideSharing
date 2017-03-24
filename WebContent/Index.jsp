@@ -21,7 +21,7 @@ Login:
 	<td>Username</td><td><input type="text" name="uname"></td>
 	</tr>
 	<tr>
-	<td>Password</td><td><input type="text" name="password"></td>
+	<td>Password</td><td><input type="password" name="password"></td>
 	</tr>
 	</table>
 	<input type="submit" value="Login">
