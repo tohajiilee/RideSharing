@@ -31,13 +31,13 @@ String str = ("SELECT * FROM Accounts WHERE username='" + uname + "'");
 ResultSet result = stmt.executeQuery(str);	
 
 if (result.next()) {
-    out.println("That name is taken: <a href='register.jsp'> Try again here </a>");
+    out.println("That is not allowed: <a href='register.jsp'> Try again here </a>");
 } 
 
 else{
 	int newAcc= stmt.executeUpdate("INSERT INTO Accounts(username,password) VALUES ('"+ uname + "','" + pass +"')");
 
-	if(newAcc > 0){
+	if(newAcc > 0 && !(pass==null || pass=="") ){
 		out.println("Registration successful: <a href='index.jsp'> Log in here </a>");
 	}	
 	else{

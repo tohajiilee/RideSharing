@@ -24,13 +24,14 @@
 
 			String uname = request.getParameter("uname");
 			String pass = request.getParameter("password");
+			
 
 			String str = ("SELECT * FROM Accounts WHERE username='" + uname + "' and password='" + pass + "'");
 
 			ResultSet result = stmt.executeQuery(str);	
         
         
-        if (result.next()) {
+        if (result.next() && !(uname==null || uname=="" || pass==null || pass=="")) {
             session.setAttribute("uname", uname);
             out.println("Login sucessful");
         } 
