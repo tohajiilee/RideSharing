@@ -23,7 +23,7 @@
 
 
 	
-			String insert = "INSERT INTO RequestRide(time,date,dep,dest,riderName)"
+			String insert = "INSERT INTO RequestRide(time,date,departure,destination,riderName)"
 					+ "VALUES (?,?,?,?,?)";
 			//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 			PreparedStatement ps = con.prepareStatement(insert);
