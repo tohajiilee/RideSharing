@@ -11,23 +11,16 @@
 </head>
 <body>
 	<%
-			//Create a connection string
 			String url = "jdbc:mysql://cs336instance.cpebridwlrpn.us-west-2.rds.amazonaws.com:3306/userstats";
-			//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
 			Class.forName("com.mysql.jdbc.Driver");
-
-			//Create a connection to your DB
 			Connection con = DriverManager.getConnection(url, "jjc372", "test1234");
 			
-			//Create a SQL statement
-
 			String uname = session.getAttribute("uname").toString();
-
 			String str = ("SELECT * FROM userstats WHERE username=?");
+			
 			PreparedStatement stmt = con.prepareStatement(str);
 			stmt.setString(1, uname);
 			ResultSet result = stmt.executeQuery();	
-        
         
         if (result.next() && !(uname==null || uname=="")) {
         	stmt = con.prepareStatement("UPDATE userstats SET points  = points + 1 WHERE username = ?");
@@ -42,8 +35,7 @@
         	stmt.executeUpdate();
         	out.println("Made new account");
         }
-        
-      //Close the connection.
+
       		con.close();
 	%>
 </body>

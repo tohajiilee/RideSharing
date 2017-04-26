@@ -10,9 +10,6 @@
 <form method="post" action="rider.jsp">
 	<table>
 	<tr>    
-	<td>Username</td><td><input type="text" name="uname"></td>
-	</tr>
-	<tr>    
 	<td>Departure</td><td><input type="text" name="riderDep"></td>
 	</tr>
 	<tr>

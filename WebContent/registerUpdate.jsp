@@ -24,6 +24,10 @@ Connection con = DriverManager.getConnection(url, "asingh", "test1234");
 
 String uname = request.getParameter("uname");
 String pass = request.getParameter("password");
+String ruemail = request.getParameter("RUemail");
+String email = request.getParameter("email");
+String addr = request.getParameter("addr");
+String phonenum = request.getParameter("ph#");
 
 String str = ("SELECT * FROM Accounts WHERE username=?");
 PreparedStatement stmt = con.prepareStatement(str);
@@ -36,9 +40,13 @@ if (result.next()) {
 } 
 
 else{
-	stmt = con.prepareStatement("INSERT INTO Accounts(username,password) VALUES (?,?)");
+	stmt = con.prepareStatement("INSERT INTO Accounts(username,password,ruEmail,secEmail,address,phonenum) VALUES (?,?,?,?,?,?)");
 	stmt.setString(1, uname);
 	stmt.setString(2, pass);
+	stmt.setString(3, ruemail);
+	stmt.setString(4, email);
+	stmt.setString(5, addr);
+	stmt.setString(6, phonenum);
 	int newAcc = stmt.executeUpdate();
 
 	if(newAcc > 0 && !(pass==null || pass=="") ){

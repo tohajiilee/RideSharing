@@ -24,7 +24,7 @@
 			String dep = request.getParameter("riderDep");
 			String dest = request.getParameter("riderDest");
 			String time= request.getParameter("riderTime");
-			String uname= request.getParameter("uname");
+			String uname= session.getAttribute("uname").toString();
 				
 			
 			String newRide = ("INSERT INTO Rider(departure,destination,timeWindow,username) VALUES ('"+ dep + "','" + dest +"','" + time +"','" + uname +"')");
