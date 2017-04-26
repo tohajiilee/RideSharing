@@ -12,17 +12,43 @@ Registration
 <br>
 Enter information below:
 
-<form method="post" action="registerUpdate.jsp">
+<form method="post" action="registerUpdate.jsp" onsubmit="return validateEmail();">
 	<table>
 	<tr>    
 	<td>Username</td><td><input type="text" name="uname"></td>
 	</tr>
 	<tr>
-	<td>Password</td><td><input type="password" name="password"></td>
+	<td>Password</td><td><input type="password" name="password" ></td>
+	</tr>
+	<tr>
+	<td>Rutgers Email</td><td><input type="text" name="RUemail" ></td>
+	</tr>
+	<tr>
+	<td>Secondary Email</td><td> <input type="text" name="email" id="email"></td>
+	</tr>
+	<tr>
+	<td>Address</td><td><input type="text" name="addr" ></td>
+	</tr>
+	<tr>
+	<td>Phone Number</td><td><input type="text" name="ph#" ></td>
 	</tr>
 	</table>
 	<input type="submit" value="submit">
 	</form>
+
+<script>
+function validateEmail() {
+    var x =  document.getElementById("email").value;
+    var atpos = x.indexOf("@");
+    var dotpos = x.lastIndexOf(".");
+    //var ru = x.indexOf("scarletmail.rutgers.edu")
+    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length ) {
+        alert("Not a valid e-mail address");
+        return false;
+    }
+}
+</script>
+
 <br>
 Have an account already? <a href="index.jsp">Log in here</a>
 </body>

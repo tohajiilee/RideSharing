@@ -33,11 +33,20 @@
         
         if (result.next() && !(uname==null || uname=="" || pass==null || pass=="")) {
             session.setAttribute("uname", uname);
-            out.println("Login sucessful");
+            response.sendRedirect("dashboard.jsp");
         } 
         else 
         {
-        	out.println("Login failed: <a href='index.jsp'> Please go here </a>");
+          	
+            session.invalidate();
+            request.setAttribute("loginError", "Invalid username or password");  
+                       
+            if(request.getAttribute("loginError")!=null)
+            { %>
+            	<script>
+    			
+				</script> <%
+            }
         }
         
       //Close the connection.
