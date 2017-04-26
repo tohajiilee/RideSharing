@@ -35,7 +35,6 @@
         	stmt.executeUpdate();
         	out.println("Made new account");
         }
-
       		con.close();
 	%>
 </body>
