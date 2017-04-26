@@ -68,7 +68,7 @@ increment ad in adTable everytime it is accessed with a trigger or something-->
 
 <!-- button for display statisical query -->
 <form method="post" action="runStatQuery.jsp"> 
-<input type="submit" value="Run Query">
+<input type="submit" value="Run Ad Query">
 </form>
 <br>
 <br>

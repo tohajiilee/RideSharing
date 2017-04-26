@@ -40,10 +40,26 @@ Create System Support Staff:
 	</form>
 <br>
 <br>
-Would you like to run a statistical query?
+Would you like to run an ad query?
 <!-- run stats query with button or smth -->
 <form method="post" action="runStatQuery.jsp"> 
-<input type="submit" value="Run Query">
+<input type="submit" value="Run Ad Query">
+</form>
+<br>
+<br>
+
+Would you like to run a ride statistic query?
+<!-- run stats query with button or smth -->
+<form method="post" action="runRideQuery.jsp"> 
+	<select name = dbselect>        
+    	<option value="daystats">day stats</option>
+        <option value="deststats">destination stats</option>
+        <option value="monthstats">month stats</option>
+        <option value="originstats">origin stats</option>
+        <option value="userstats">user stats</option>
+        <option value="yearstats">year stats</option>
+	</select>
+<input type="submit" value="Run Ride Statistics Query">
 </form>
 <br>
 <br>
