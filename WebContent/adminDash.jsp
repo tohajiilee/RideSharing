@@ -33,7 +33,7 @@ Create System Support Staff:
 	<td>Phone Number</td><td><input type="text" name="ph#" ></td>
 	</tr>
 	<tr>
-	<td>Usertype</td><td><input type="text" value="support"></td>
+	<td>Usertype</td><td><input type="text" name ="utype" value="support"></td>
 	</tr>
 	</table>
 	<input type="submit" value="Submit">

@@ -28,7 +28,7 @@ new form. simply give random assortment of alphanumerics
 <br>
 <br>
 
-<!-- lock out end-user with by setting Boolean in userTable. 1 is ok default. 0 is misbehave-->
+<!-- lock out end-user by setting Boolean in userTable. 1 is ok default. 0 is misbehave-->
 <form method="post" action="userTimeout.jsp">
 	<table>
 	<tr>
