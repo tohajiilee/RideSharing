@@ -20,7 +20,7 @@ new form. simply give random assortment of alphanumerics
 <form method="post" action="changePassword.jsp"> 
 	<table>
 	<tr>
-	<td>Change User Password:</td><td><input type="text" name="username"></td>
+	<td>Change User Password:</td><td><input type="text" name="uname"></td>
 	</tr>
 	</table>
 	<input type="submit" value="Change Password">
@@ -28,14 +28,25 @@ new form. simply give random assortment of alphanumerics
 <br>
 <br>
 
-<!-- lock out end-user by setting Boolean in userTable. 1 is ok default. 0 is misbehave-->
+<!-- lock out end-user by setting Boolean in userTable. 1 is ok & is default. 0 is misbehave
+Also will support functionality to un-lockout end-users
+This means that this user will be unable to login when that username/pw is input-->
 <form method="post" action="userTimeout.jsp">
 	<table>
 	<tr>
-	<td>Lockout User:</td><td><input type="text" name="username"></td>
+	<td>Enter Username to Lockout:</td><td><input type="text" name="uname"></td>
 	</tr>
 	</table>
 	<input type="submit" value="Lockout User">
+</form>
+<br>
+<form method="post" action="userTimein.jsp">
+	<table>
+	<tr>
+	<td>Enter Username to Lockout:</td><td><input type="text" name="uname"></td>
+	</tr>
+	</table>
+	<input type="submit" value="Unlockout User">
 </form>
 <br>
 <br>
@@ -47,7 +58,7 @@ increment ad in adTable everytime it is accessed with a trigger or something-->
 <form method="post" action="addAds.jsp">
 	<table>
 	<tr>
-	<td>Add an Ad:</td><td><input type="text" name="username"></td>
+	<td>Add an Ad:</td><td><input type="text" name="uname"></td>
 	</tr>
 	</table>
 	<input type="submit" value="Add an Ad">
@@ -56,13 +67,8 @@ increment ad in adTable everytime it is accessed with a trigger or something-->
 <br>
 
 <!-- button for display statisical query -->
-<form method="post" action="RunStatQuery.jsp"> 
-	<table>
-	<tr>
-	<td>Lockout User:</td><td><input type="text" name="username"></td>
-	</tr>
-	</table>
-	<input type="submit" value="Run and Display Query">
+<form method="post" action="runStatQuery.jsp"> 
+<input type="submit" value="Run Query">
 </form>
 <br>
 <br>
