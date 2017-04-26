@@ -20,34 +20,31 @@
 			Connection con = DriverManager.getConnection(url, "jjc372", "test1234");
 			
 			//Create a SQL statement
-			Statement stmt = con.createStatement();
 
 			String uname = session.getAttribute("uname").toString();
 
-			String str = ("SELECT * FROM userstats WHERE username='" + uname + "'");
-
-			ResultSet result = stmt.executeQuery(str);	
+			String str = ("SELECT * FROM userstats WHERE username=?");
+			PreparedStatement stmt = con.prepareStatement(str);
+			stmt.setString(1, uname);
+			ResultSet result = stmt.executeQuery();	
         
         
         if (result.next() && !(uname==null || uname=="")) {
-        	stmt.executeUpdate("UPDATE userstats SET points  = points + 1 WHERE username='" + uname + "'");
+        	stmt = con.prepareStatement("UPDATE userstats SET points  = points + 1 WHERE username = ?");
+        	stmt.setString(1, uname);
+        	stmt.executeUpdate();
             out.println("Found on board");
         } 
         else 
         {
-        	int newAcc = stmt.executeUpdate("INSERT INTO userstats(username,points) VALUES ('" + uname + "',0)");
+        	stmt = con.prepareStatement("INSERT INTO userstats(username,points) VALUES (?,1)");
+        	stmt.setString(1, uname);
+        	stmt.executeUpdate();
         	out.println("Made new account");
         }
         
       //Close the connection.
       		con.close();
-    
 	%>
-	<table border="1">
-	<tr>
-		<td><%=result.getString("username") %></td>
-		<td><%=result.getInt("points") %></td>
-	</tr>
-	</table>
 </body>
 </html>
