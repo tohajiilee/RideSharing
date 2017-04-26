@@ -21,23 +21,34 @@ Class.forName("com.mysql.jdbc.Driver");
 Connection con = DriverManager.getConnection(url, "asingh", "test1234");
 
 //Create a SQL statement
-Statement stmt = con.createStatement();
 
 String uname = request.getParameter("uname");
 String pass = request.getParameter("password");
 
-String str = ("SELECT * FROM Accounts WHERE username='" + uname + "'");
+String str = ("SELECT * FROM Accounts WHERE username=?");
+PreparedStatement stmt = con.prepareStatement(str);
+stmt.setString(1, uname);
 
-ResultSet result = stmt.executeQuery(str);	
+ResultSet result = stmt.executeQuery();	
 
 if (result.next()) {
     out.println("That is not allowed: <a href='register.jsp'> Try again here </a>");
 } 
 
 else{
-	int newAcc= stmt.executeUpdate("INSERT INTO Accounts(username,password) VALUES ('"+ uname + "','" + pass +"')");
+	stmt = con.prepareStatement("INSERT INTO Accounts(username,password) VALUES (?,?)");
+	stmt.setString(1, uname);
+	stmt.setString(2, pass);
+	int newAcc = stmt.executeUpdate();
 
 	if(newAcc > 0 && !(pass==null || pass=="") ){
+		con.close();
+		url = "jdbc:mysql://cs336instance.cpebridwlrpn.us-west-2.rds.amazonaws.com:3306/userstats";
+		Class.forName("com.mysql.jdbc.Driver");
+		con = DriverManager.getConnection(url, "jjc372", "test1234");
+		stmt = con.prepareStatement("INSERT INTO userstats(username,points) VALUES (?,0)");
+    	stmt.setString(1, uname);
+    	stmt.executeUpdate();
 		out.println("Registration successful: <a href='index.jsp'> Log in here </a>");
 	}	
 	else{
