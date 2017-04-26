@@ -13,36 +13,59 @@
 <%
 
 //Create a connection string
-String url = "jdbc:mysql://cs336ericzhuang.chqhpt0v9ibv.us-east-1.rds.amazonaws.com:3306";
+String url = "jdbc:mysql://cs336db.cqgstqm2na1g.us-east-1.rds.amazonaws.com:3306/Users";
 //Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
 Class.forName("com.mysql.jdbc.Driver");
 
 //Create a connection to your DB
-Connection con = DriverManager.getConnection(url, "cs336ez", "cs336633");
+Connection con = DriverManager.getConnection(url, "asingh", "test1234");
 
 //Create a SQL statement
 
-String utype = request.getParameter("utype");
 String uname = request.getParameter("uname");
-String pass = request.getParameter("pass");
+String pass = request.getParameter("password");
+String ruemail = request.getParameter("RUemail");
+String email = request.getParameter("email");
+String addr = request.getParameter("addr");
+String phonenum = request.getParameter("ph#");
+String utype = request.getParameter("utype");
 
-String str = ("SELECT * FROM userTable WHERE username=?");
+String str = ("SELECT * FROM Accounts WHERE username=?");
 PreparedStatement stmt = con.prepareStatement(str);
+stmt.setString(1, uname);
 
 ResultSet result = stmt.executeQuery();	
 
 if (result.next()) {
-    out.println("Username not available: <a href='register.jsp'> Try again here </a>");
+    out.println("That is not allowed: <a href='register.jsp'> Try again here </a>");
 } 
 
 else{
-	stmt = con.prepareStatement("INSERT INTO userTable(userType,username,password) VALUES (?,?,?)");
-	stmt.setString(1, utype);
-	stmt.setString(2, uname);
-	stmt.setString(3, pass);
+	stmt = con.prepareStatement("INSERT INTO Accounts(username,password,ruEmail,secEmail,address,phonenum,userType) VALUES (?,?,?,?,?,?,?)");
+	stmt.setString(1, uname);
+	stmt.setString(2, pass);
+	stmt.setString(3, ruemail);
+	stmt.setString(4, email);
+	stmt.setString(5, addr);
+	stmt.setString(6, phonenum);
+	stmt.setString(7, utype);
 	int newAcc = stmt.executeUpdate();
-	out.println("Registration successful: <a href='index.jsp'> Log in here </a>");
-	}
+
+	if(newAcc > 0 && !(pass==null || pass=="") ){
+		con.close();
+		url = "jdbc:mysql://cs336instance.cpebridwlrpn.us-west-2.rds.amazonaws.com:3306/userstats";
+		Class.forName("com.mysql.jdbc.Driver");
+		con = DriverManager.getConnection(url, "jjc372", "test1234");
+		stmt = con.prepareStatement("INSERT INTO userstats(username,points) VALUES (?,0)");
+    	stmt.setString(1, uname);
+    	stmt.executeUpdate();
+		out.println("Registration successful: <a href='index.jsp'> Log in here </a>");
+	}	
+	else{
+	    out.println("Registration unsuccessful: <a href='register.jsp'> Try again here </a>");
+    
+}
+}
 
 
 //close the connection

@@ -56,7 +56,7 @@ increment ad in adTable everytime it is accessed with a trigger or something-->
 <br>
 
 <!-- button for display statisical query -->
-<form method="post" action="userTimeout.jsp"> 
+<form method="post" action="RunStatQuery.jsp"> 
 	<table>
 	<tr>
 	<td>Lockout User:</td><td><input type="text" name="username"></td>

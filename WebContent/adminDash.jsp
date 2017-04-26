@@ -14,14 +14,26 @@ Create System Support Staff:
 
 <form method="post" action="adminCreateSupport.jsp"> <!-- also send userType = support -->
 	<table>
+	<tr>    
+	<td>Username</td><td><input type="text" name="uname"></td>
+	</tr>
+	<tr>
+	<td>Password</td><td><input type="password" name="password" ></td>
+	</tr>
+	<tr>
+	<td>Rutgers Email</td><td><input type="text" name="RUemail" ></td>
+	</tr>
+	<tr>
+	<td>Secondary Email</td><td> <input type="text" name="email" id="email"></td>
+	</tr>
+	<tr>
+	<td>Address</td><td><input type="text" name="addr" ></td>
+	</tr>
+	<tr>
+	<td>Phone Number</td><td><input type="text" name="ph#" ></td>
+	</tr>
 	<tr>
 	<td>Usertype</td><td><input type="text" value="support"></td>
-	</tr>
-	<tr>
-	<td>Username</td><td><input type="text" name="username"></td>
-	</tr>
-	<tr>
-	<td>Password</td><td><input type="password" name="password"></td>
 	</tr>
 	</table>
 	<input type="submit" value="Submit">
