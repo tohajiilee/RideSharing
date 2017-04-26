@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Login Page</title>
 </head>
 <body>
 	<%
@@ -24,14 +24,18 @@
 
 			String uname = request.getParameter("uname");
 			String pass = request.getParameter("password");
+
+			String str = ("SELECT username,password,userBehavior FROM Accounts WHERE username='" + uname + "' and password='" + pass + "'" );
+
+			ResultSet result = stmt.executeQuery(str);
 			
-
-			String str = ("SELECT * FROM Accounts WHERE username='" + uname + "' and password='" + pass + "'");
-
-			ResultSet result = stmt.executeQuery(str);	
+			int userBehavior = 1;
+			if(result.next()){
+				userBehavior = result.getInt(3);
+				out.print("This user has misbehaved and is locked out from our service.");
+			}
         
-        
-        if (result.next() && !(uname==null || uname=="" || pass==null || pass=="")) {
+        if (result.next() && !(uname==null || uname=="" || pass==null || pass=="" || userBehavior =='0')) {
             session.setAttribute("uname", uname);
             response.sendRedirect("dashboard.jsp");
         } 

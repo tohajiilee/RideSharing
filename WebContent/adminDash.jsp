@@ -45,6 +45,28 @@ Would you like to run a statistical query?
 <form method="post" action="runStatQuery.jsp"> 
 <input type="submit" value="Run Query">
 </form>
+<br>
+<br>
+
+<form method="post" action="userTimeout.jsp">
+	<table>
+	<tr>
+	<td>Enter Username to Lockout:</td><td><input type="text" name="uname"></td>
+	</tr>
+	</table>
+	<input type="submit" value="Lockout User">
+</form>
+<br>
+<form method="post" action="userTimein.jsp">
+	<table>
+	<tr>
+	<td>Enter Username to Lockout:</td><td><input type="text" name="uname"></td>
+	</tr>
+	</table>
+	<input type="submit" value="Unlockout User">
+</form>
+<br>
+<br>
 
 </body>
 </html>
