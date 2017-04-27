@@ -61,7 +61,7 @@
 	Class.forName("com.mysql.jdbc.Driver");
 	Connection con = DriverManager.getConnection(url, "asingh", "test1234");
 			
-	PreparedStatement statement = con.prepareStatement("SELECT R.requestNo,R.riderName,R.time,R.date,R.departure,R.destination FROM RequestRide R, OfferRide O WHERE R.time<=O.to AND R.time>=O.from AND R.date=O.date AND R.accept=0");
+	PreparedStatement statement = con.prepareStatement("SELECT R.requestNo,R.riderName,R.time,R.date,R.departure,R.destination FROM RequestRide R, OfferRide O WHERE R.time<=O.timeEnd AND R.time>=O.timeStart AND R.date=O.date AND R.accept=0");
 	ResultSet resultSet = statement.executeQuery();
 	
 	
@@ -71,8 +71,8 @@
 		<td><%=resultSet.getInt("requestNo")%></td>
 		<td><%=resultSet.getString("time")%></td>
 		<td><%=resultSet.getString("date")%></td>
-		<td><%=resultSet.getInt("departure")%></td>
-		<td><%=resultSet.getInt("destination")%></td>
+		<td><%=resultSet.getString("departure")%></td>
+		<td><%=resultSet.getString("destination")%></td>
 		<td><%=resultSet.getString("riderName")%></td>
 		
 		
@@ -117,7 +117,7 @@
 	<%
 	String uname2 = (String)session.getAttribute("uname");
 	
-	PreparedStatement statement2 = con.prepareStatement("SELECT R.requestNo,R.riderName,R.time,R.date,R.departure,R.destination FROM RequestRide R, OfferRide O WHERE R.time<=O.to AND R.time>=O.from AND R.date=O.date AND R.accept=1 AND R.driverName=?");
+	PreparedStatement statement2 = con.prepareStatement("SELECT R.requestNo,R.riderName,R.time,R.date,R.departure,R.destination FROM RequestRide R, OfferRide O WHERE R.time<=O.timeEnd AND R.time>=O.timeStart AND R.date=O.date AND R.accept=1 AND R.driverName=?");
 
 	statement2.setString(1,uname2);
 	

@@ -16,29 +16,21 @@
 			//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection(url, "asingh", "test1234");
-					
-			String from = request.getParameter("timeF");
-			String to = request.getParameter("timeT");
-			String date = request.getParameter("date");
-			String dep = request.getParameter("dep");
-			String dest = request.getParameter("dest");
-			String veh= request.getParameter("veh");
+
 			String driverName = (String)session.getAttribute("uname");
-
-
 	
-			String insert = "INSERT INTO OfferRide(from,to,date,departure,destination,driverName,vehicleInfo)"
+			String insert = "INSERT INTO OfferRide(timeStart,timeEnd,date,departure,destination,driverName,vehicleInfo)"
 					+ "VALUES (?,?,?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(insert);
 
 
-			ps.setString(1, from);
-			ps.setString(2, to);
-			ps.setString(3, date);
-			ps.setString(4, dep);
-			ps.setString(5, dest);
+			ps.setString(1, request.getParameter("timeF"));
+			ps.setString(2, request.getParameter("timeT"));
+			ps.setString(3, request.getParameter("date"));
+			ps.setString(4, request.getParameter("dep"));
+			ps.setString(5, request.getParameter("dest"));
 			ps.setString(6, driverName);
-			ps.setString(7, veh);
+			ps.setString(7, request.getParameter("veh"));
 
 			//Run the query against the DB
 			ps.executeUpdate();
