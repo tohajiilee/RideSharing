@@ -6,27 +6,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+   <link rel="stylesheet" href="index.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Ride-Sharing App</title>
 </head>
 <body>
-Ride-Sharing Application(Contributors: Eric Zhuang, Aman Singh, Joel Carrillo)
 <br>
 <br>
-Login:
+
 
 <form method="post" action="login.jsp">
-	<table>
-	<tr>    
-	<td>Username</td><td><input type="text" name="uname"></td>
-	</tr>
-	<tr>
-	<td>Password</td><td><input type="password" name="password"></td>
-	</tr>
-	</table>
-	<input type="submit" value="Login">
-	</form>
-	
+
+
+  <div class="container">
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+        
+    <button type="submit">Login</button>
+  </div>
+
+</form>
+
 <br>
 Don't have an account? <a href="register.jsp">Register Here</a>
 
