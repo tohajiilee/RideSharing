@@ -27,30 +27,36 @@
 
 			String str = ("SELECT username,password,userBehavior FROM Accounts WHERE username='" + uname + "' and password='" + pass + "'" );
 
-			ResultSet result = stmt.executeQuery(str);
+			boolean userBehavior = true;
 			
-			int userBehavior = 1;
-			if(result.next()){
-				userBehavior = result.getInt(3);
-				out.print("This user has misbehaved and is locked out from our service.");
-			}
+// 			if(result.next()){
+// 				userBehavior = result.getString(3);
+// 				if(userBehavior == "0"){
+// 		            out.print(userBehavior);
+// 					out.print("This user has misbehaved and is locked out from our service.");
+// 				}
+// 			}
+			
+			ResultSet result = stmt.executeQuery(str);
+        if (result.next() && !(uname==null || uname=="" || pass==null || pass=="")) {
+			userBehavior = result.getBoolean(3);
+			if(userBehavior == true){
+	            session.setAttribute("uname", uname);
+	            response.sendRedirect("dashboard.jsp");
+			} 
+        else{			
         
-        if (result.next() && !(uname==null || uname=="" || pass==null || pass=="" || userBehavior =='0')) {
-            session.setAttribute("uname", uname);
-            response.sendRedirect("dashboard.jsp");
-        } 
-        else 
-        {
-          	
             session.invalidate();
-            request.setAttribute("loginError", "Invalid username or password");  
-                       
+            request.setAttribute("loginError", "Invalid username or password");
+            out.print("This user has an incorrect username/password or has misbehaved and is locked out from our service.");
+
             if(request.getAttribute("loginError")!=null)
             { %>
             	<script>
     			
 				</script> <%
             }
+        }
         }
         
       //Close the connection.
