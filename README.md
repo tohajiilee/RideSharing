@@ -15,24 +15,24 @@ Amazon ec2 credentials:
 Login:noodleboieric@gmail.com
 Password:cs336ez
 
-acceptOffer.jsp - 
+acceptOffer.jsp - AS
 addAds.jsp - EZ
 adminCreateSupport.jsp - EZ
 adminDash.jsp - EZ
 adsBackend.jsp - EZ
 changePassword.jsp - EZ
-dashboard.jsp - 
-driverDashboard.jsp - 
-index.jsp - 
+dashboard.jsp - AS
+driverDashboard.jsp - AS
+index.jsp - AS
 leaderboards.jsp - 
-login.jsp - /EZ
+login.jsp - AS/EZ/
 messenger.jsp - 
-offerRide.jsp - 
-register.jsp - 
-registerUpdate.jsp - 
-requestRide.jsp -
+offerRide.jsp - AS
+register.jsp - AS
+registerUpdate.jsp - AS
+requestRide.jsp - AS
 rideComplete.jsp - 
-riderDashboard.jsp - 
+riderDashboard.jsp - AS
 riding.jsp - 
 runRideQuery.jsp - 
 runStatQuery.jsp - EZ
