@@ -43,7 +43,7 @@ This means that this user will be unable to login when that username/pw is input
 <form method="post" action="userTimein.jsp">
 	<table>
 	<tr>
-	<td>Enter Username to Lockout:</td><td><input type="text" name="uname"></td>
+	<td>Enter Username to Unlockout:</td><td><input type="text" name="uname"></td>
 	</tr>
 	</table>
 	<input type="submit" value="Unlockout User">
