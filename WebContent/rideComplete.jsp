@@ -26,15 +26,7 @@
         	stmt = con.prepareStatement("UPDATE userstats SET points  = points + 1 WHERE username = ?");
         	stmt.setString(1, uname);
         	stmt.executeUpdate();
-            out.println("Found on board");
         } 
-        else 
-        {
-        	stmt = con.prepareStatement("INSERT INTO userstats(username,points) VALUES (?,1)");
-        	stmt.setString(1, uname);
-        	stmt.executeUpdate();
-        	out.println("Made new account");
-        }
         
         	Calendar cal = Calendar.getInstance();
         	int currMonth = cal.get(Calendar.MONTH) + 1;
@@ -79,5 +71,21 @@
 			
       		con.close();
 	%>
+	Please rate the quality of your riding experience: 
+	<form method="post" action="rateUser.jsp"> 
+	<select name = dbselect>        
+    	<option value="norating">No Rating</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+	</select>
+	<br><br>
+	<td>Leave behind a comment (optional):</td>
+	<br><td><textarea name="message" cols="50" rows="10"></textarea></td>
+	<br>
+	<input type="submit" value="Rate Driver">
+	</form>
 </body>
 </html>
