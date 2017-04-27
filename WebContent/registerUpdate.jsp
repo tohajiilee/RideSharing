@@ -71,9 +71,9 @@ else{
 		con = DriverManager.getConnection(url, "jjc372", "test1234");
 		String userIn = uname + "inbox";
 		String userOut = uname + "outbox";
-		stmt = con.prepareStatement("CREATE TABLE " + userIn + " (sender VARCHAR(20) NOT NULL, message VARCHAR(225) NOT NULL, PRIMARY KEY (sender))");
+		stmt = con.prepareStatement("CREATE TABLE " + userIn + " (sender VARCHAR(20) NOT NULL, message VARCHAR(225) NOT NULL)");
 		stmt.executeUpdate();
-		stmt = con.prepareStatement("CREATE TABLE " + userOut + " (recipient VARCHAR(20) NOT NULL, message VARCHAR(225) NOT NULL, PRIMARY KEY (recipient))");
+		stmt = con.prepareStatement("CREATE TABLE " + userOut + " (recipient VARCHAR(20) NOT NULL, message VARCHAR(225) NOT NULL)");
 		stmt.executeUpdate();
 		out.println("Registration successful: <a href='index.jsp'> Log in here </a>");
 	}	

@@ -28,7 +28,6 @@
         	result.next();
         	int currPoints = result.getInt("points");
         	str = ("Your points: " + currPoints);
-            out.println(str);
         } 
         else 
         {
@@ -38,6 +37,8 @@
         	str = ("Your points: 0");
         }
 
+    		out.println("<a href='messenger.jsp'>Click here to go to your Inbox.</a><br>");
+        	out.println(str);
       		con.close();
 	%>
 <h1>Select Option:</h1>
