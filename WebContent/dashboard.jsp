@@ -41,7 +41,15 @@
       		con.close();
 	%>
 <h1>Select Option:</h1>
-<input type="button" onclick="location.href='riderDashboard.jsp'"> Rider 
+<input type="button" onclick="location.href='riderDashboard.jsp'"> Rider
+<br>
+<br>
 <input type="button" onclick="location.href='driverDashboard.jsp'"> Driver 
+<br>
+<br>
+<input type="button" onclick="location.href='supportDash.jsp'"> Support 
+<br>
+<br>
+<input type="button" onclick="location.href='adminDash.jsp'"> Admin
 </body>
 </html>

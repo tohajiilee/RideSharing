@@ -12,6 +12,9 @@
 <br>
 <br>
 
+<img src="<c:url value="${RideSharing/WebContent/images/ad1.jpg}"/>"/>
+<img src="/RideSharing/WebContent/images/ad1.jpg">
+
 <!-- can you target a specific function within the jsp file?-->
 
 <!-- reset end-user password - form to change pw 
@@ -28,7 +31,7 @@ new form. simply give random assortment of alphanumerics
 <br>
 <br>
 
-<!-- lock out end-user by setting Boolean in userTable. 1 is ok & is default. 0 is misbehave
+<!-- lock out end-user by setting Boolean in userTable. true is ok & is default. false is misbehave
 Also will support functionality to un-lockout end-users
 This means that this user will be unable to login when that username/pw is input-->
 <form method="post" action="userTimeout.jsp">
