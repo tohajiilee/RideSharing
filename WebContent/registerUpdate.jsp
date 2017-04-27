@@ -57,15 +57,21 @@ else{
 		stmt = con.prepareStatement("INSERT INTO userstats(username,points) VALUES (?,0)");
     	stmt.setString(1, uname);
     	stmt.executeUpdate();
+    	String userMonth = uname + "monthstats";
+		String userSemester = uname + "semstats";
+		stmt = con.prepareStatement("CREATE TABLE " + userMonth + " (monthid VARCHAR(20) NOT NULL, points INT NOT NULL, PRIMARY KEY (monthid))");
+		stmt.executeUpdate();
+		stmt = con.prepareStatement("CREATE TABLE " + userSemester + " (semid VARCHAR(20) NOT NULL, points INT NOT NULL, PRIMARY KEY (semid))");
+		stmt.executeUpdate();
     	con.close();
     	url = "jdbc:mysql://cs336instance.cpebridwlrpn.us-west-2.rds.amazonaws.com:3306/usermessages";
 		Class.forName("com.mysql.jdbc.Driver");
 		con = DriverManager.getConnection(url, "jjc372", "test1234");
 		String userIn = uname + "inbox";
 		String userOut = uname + "outbox";
-		stmt = con.prepareStatement("CREATE TABLE " + userIn + " (sender VARCHAR(20) NOT NULL, message VARCHAR(150) NOT NULL, PRIMARY KEY (sender))");
+		stmt = con.prepareStatement("CREATE TABLE " + userIn + " (sender VARCHAR(20) NOT NULL, message VARCHAR(225) NOT NULL, PRIMARY KEY (sender))");
 		stmt.executeUpdate();
-		stmt = con.prepareStatement("CREATE TABLE " + userOut + " (recipient VARCHAR(20) NOT NULL, message VARCHAR(150) NOT NULL, PRIMARY KEY (recipient))");
+		stmt = con.prepareStatement("CREATE TABLE " + userOut + " (recipient VARCHAR(20) NOT NULL, message VARCHAR(225) NOT NULL, PRIMARY KEY (recipient))");
 		stmt.executeUpdate();
 		out.println("Registration successful: <a href='index.jsp'> Log in here </a>");
 	}	
