@@ -64,11 +64,21 @@ increment ad in adTable everytime it is accessed with a trigger or something-->
 <form method="post" action="addAds.jsp">
 	<table>
 	<tr>
-	<td>Add an Ad:</td><td><input type="text" name="adname"></td>
+	<td>Add an Ad:</td>
 	</tr>
 	</table>
-	<input type="submit" value="Add an Ad">
+	<input type="file" name ="adname" accept="image/">
+	
 </form>
+<h3>File Upload:</h3>
+Select a file to upload: <br />
+<form action="UploadServlet" method="post"
+                        enctype="multipart/form-data">
+<input type="file" name="file" size="50" />
+<br />
+<input type="submit" value="Upload File" />
+</form>
+
 <br>
 <br>
 

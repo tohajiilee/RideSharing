@@ -7,10 +7,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>User Timeout</title>
+<title>Ads</title>
 </head>
 <body>
+
 	<%
+	
 	//Create a connection string
 	String url = "jdbc:mysql://cs336db.cqgstqm2na1g.us-east-1.rds.amazonaws.com:3306/Users";
 	//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
@@ -20,14 +22,15 @@
 	Connection con = DriverManager.getConnection(url, "asingh", "test1234");
 	String adname = request.getParameter("adname");
 	
-	String str = ("UPDATE adTable SET adShown = adShown + 1 WHERE adName = ?");
+	//String str = ("UPDATE adTable SET adShown = adShown + 1 WHERE adName = ?");
+	String str = ("INSERT INTO adTable VALUES adName = ?");
 	
 
 	PreparedStatement stmt = con.prepareStatement(str);
 	stmt.setString(1,adname);
-	int result = stmt.executeUpdate();	
+	stmt.execute();	
 	
-	out.print("User "+ "'"+ adname +"'" +" has been unlocked out");
+	out.print(adname +"added");
 	
     con.close();
 	%>
