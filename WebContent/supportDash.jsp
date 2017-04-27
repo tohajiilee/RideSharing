@@ -11,9 +11,12 @@
 <body>
 <br>
 <br>
-
+<img border="0" src="/images/ad1.jpg"
+     alt="Pulpit rock" width="304" height="228">
+     
 <img src="<c:url value="${RideSharing/WebContent/images/ad1.jpg}"/>"/>
 <img src="/RideSharing/WebContent/images/ad1.jpg">
+<img src="${pageContext.request.contextPath}/RideSharing/WebContent/images/ad1.jpg" />
 
 <!-- can you target a specific function within the jsp file?-->
 
@@ -61,7 +64,7 @@ increment ad in adTable everytime it is accessed with a trigger or something-->
 <form method="post" action="addAds.jsp">
 	<table>
 	<tr>
-	<td>Add an Ad:</td><td><input type="text" name="uname"></td>
+	<td>Add an Ad:</td><td><input type="text" name="adname"></td>
 	</tr>
 	</table>
 	<input type="submit" value="Add an Ad">
@@ -69,7 +72,7 @@ increment ad in adTable everytime it is accessed with a trigger or something-->
 <br>
 <br>
 
-<!-- button for display statisical query -->
+<!-- button for display statistical query -->
 <form method="post" action="runStatQuery.jsp"> 
 <input type="submit" value="Run Ad Query">
 </form>
