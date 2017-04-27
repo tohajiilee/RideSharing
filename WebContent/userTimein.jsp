@@ -22,17 +22,6 @@
 	
 	String str = ("UPDATE Accounts SET userBehavior = '1' WHERE username = ?");
 	
-	String trigger = ("CREATE TRIGGER behaviorCheck
-	INSTEAD OF UPDATE OF salary ON Employee
-	FOR EACH ROW
-	BEGIN
-	IF (OLD.salary > NEW.salary)
-	THEN INSERT INTO WarningTable(empId#,oldSal,newSal)
-	VALUES(oldTuple.empid#,OLD.salary,NEW.salary)
-	ELSE UPDATE Employee SET salary = NEW.salary
-	WHERE empId#= NEW.empId#
-	END
-	")
 
 	PreparedStatement stmt = con.prepareStatement(str);
 	stmt.setString(1,uname);

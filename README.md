@@ -15,6 +15,7 @@ Amazon ec2 credentials:
 Login:noodleboieric@gmail.com
 Password:cs336ez
 
+acceptOffer.jsp - 
 addAds.jsp - EZ
 adminCreateSupport.jsp - EZ
 adminDash.jsp - EZ
