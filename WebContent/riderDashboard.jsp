@@ -9,6 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+ 		<div style="float:right">
+        <form method="post" action="logout.jsp">
+   		 <input type="submit" value="Logout"/>
+		</form>
+        </div>
 <br>
 <form method="post" action="requestRide.jsp">
 	<table>
@@ -27,7 +32,7 @@
 	</table>
 	<input type="submit" value="Request Ride">
 	</form>
-	</br>
+
 	
 <h2> Current Ride Requests </h2>
 <table cellpadding = "3" cellspacing = "3" border = "1">
@@ -87,7 +92,7 @@
 	<%
 	String uname2 = (String)session.getAttribute("uname");
 	
-	PreparedStatement statement2 = con.prepareStatement("SELECT O.offerNo,R.requestNo,R.driverName,R.time,R.date,R.departure,R.destination FROM RequestRide R, OfferRide O WHERE R.time<=O.to AND R.time>=O.from AND R.date=O.date AND R.accept=1 AND R.riderName=?");
+	PreparedStatement statement2 = con.prepareStatement("SELECT O.offerNo,R.requestNo,R.driverName,R.time,R.date,R.departure,R.destination FROM RequestRide R, OfferRide O WHERE R.time<=O.timeEnd AND R.time>=O.timeStart AND R.date=O.date AND R.accept=1 AND R.riderName=?");
 	
 	statement2.setString(1,uname2);
 	
