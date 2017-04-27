@@ -9,6 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+ 		<div style="float:right">
+        <form method="post" action="logout.jsp">
+   		 <input type="submit" value="Logout"/>
+		</form>
+        </div>
+
 	<form method="post" action="offerRide.jsp">
 	<table>
 	<tr>    
@@ -45,8 +51,8 @@
 				<tr>
 				</tr>
 				<tr>
-				<TH><b>Request #</b></th>
-				<TH><b>Departure Time</b></th>
+				<th><b>Request #</b></th>
+				<th><b>Departure Time</b></th>
 				<th><b>Date</b></th>
 				<th><b>Departure</b></th>
 				<th><b>Destination </b></th>
@@ -101,7 +107,7 @@
 	
 	
 <h2> Scheduled Rides </h2>
-				<table align="left" cellpadding = "4" cellspacing = "4" border = "4">
+				<table align="left" cellpadding = "3" cellspacing = "3" border = "1">
 				<tr>
 				</tr>
 				<tr>
@@ -129,8 +135,8 @@
 			<td><%=resultSet2.getInt("requestNo")%></td>
 			<td><%=resultSet2.getString("time")%></td>
 			<td><%=resultSet2.getString("date")%></td>
-			<td><%=resultSet2.getInt("departure")%></td>
-			<td><%=resultSet2.getInt("destination")%></td>
+			<td><%=resultSet2.getString("departure")%></td>
+			<td><%=resultSet2.getString("destination")%></td>
 			<td><%=resultSet2.getString("riderName")%></td>
 			</tr>			
 			
