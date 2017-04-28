@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
+<h1>Enduser Dashboard</h1>
 <body>
 <%
 			String url = "jdbc:mysql://cs336instance.cpebridwlrpn.us-west-2.rds.amazonaws.com:3306/userstats";
@@ -48,9 +49,5 @@
 <input type="button" onclick="location.href='driverDashboard.jsp'"> Driver 
 <br>
 <br>
-<input type="button" onclick="location.href='supportDash.jsp'"> Support 
-<br>
-<br>
-<input type="button" onclick="location.href='adminDash.jsp'"> Admin
 </body>
 </html>

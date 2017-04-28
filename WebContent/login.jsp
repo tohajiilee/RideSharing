@@ -25,29 +25,41 @@
 			String uname = request.getParameter("uname");
 			String pass = request.getParameter("password");
 
-			String str = ("SELECT username,password,userBehavior FROM Accounts WHERE username='" + uname + "' and password='" + pass + "'" );
+			String str = ("SELECT username,password,userType,userBehavior FROM Accounts WHERE username='" + uname + "' and password='" + pass + "'" );
 
 			boolean userBehavior = true;
-			
-// 			if(result.next()){
-// 				userBehavior = result.getString(3);
-// 				if(userBehavior == "0"){
-// 		            out.print(userBehavior);
-// 					out.print("This user has misbehaved and is locked out from our service.");
-// 				}
-// 			}
+			String userType = "";
 			
 			ResultSet result = stmt.executeQuery(str);
         if (result.next() && !(uname==null || uname=="" || pass==null || pass=="")) {
-			userBehavior = result.getBoolean(3);
-			if(userBehavior == true){
+        	userType = result.getString(3);
+			userBehavior = result.getBoolean(4);
+			if(userBehavior == true || userType == "enduser"){ //works with || but not && why
 	            session.setAttribute("uname", uname);
-	            response.sendRedirect("dashboard.jsp");
-			} 
+	            out.print(userBehavior);
+	            out.print(userType);
+	            //response.sendRedirect("dashboard.jsp");
+			}
+			if(userBehavior == true) {
+				if(userType == "enduser"){ 
+		            session.setAttribute("uname", uname);
+		            response.sendRedirect("dashboard.jsp");
+				}
+				else if(userType == "support"){ 
+		            session.setAttribute("uname", uname);
+		            response.sendRedirect("supportDash.jsp");
+				}
+				else if(userType == "admin"){ 
+		            session.setAttribute("uname", uname);
+		            response.sendRedirect("adminDash.jsp");
+				}
+			}
         else{			
         
             session.invalidate();
             request.setAttribute("loginError", "Invalid username or password");
+            out.print(userBehavior);
+            out.print(userType);
             out.print("This user has an incorrect username/password or has misbehaved and is locked out from our service.");
 
             if(request.getAttribute("loginError")!=null)
