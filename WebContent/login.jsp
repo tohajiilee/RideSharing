@@ -34,21 +34,18 @@
         if (result.next() && !(uname==null || uname=="" || pass==null || pass=="")) {
         	userType = result.getString(3);
 			userBehavior = result.getBoolean(4);
-			if(userBehavior == true) {
-				if(userType == "admin"){ 
-		            session.setAttribute("uname", uname);
-		            response.sendRedirect("adminDash.jsp");
-				}
-				else if(userType == "support"){ 
-		            session.setAttribute("uname", uname);
-		            response.sendRedirect("supportDash.jsp");
-				}
-				else { 
-		            session.setAttribute("uname", uname);
-		            out.print(userType);
-		            response.sendRedirect("dashboard.jsp");
-				}
- 			}
+			if(userBehavior == true && userType.equals("admin")) {
+		    	session.setAttribute("uname", uname);
+		        response.sendRedirect("adminDash.jsp");
+			}
+			else if(userBehavior == true && userType.equals("support")) {
+		    	session.setAttribute("uname", uname);
+		        response.sendRedirect("supportDash.jsp");
+			}
+			else if(userBehavior == true && userType.equals("enduser")) {
+		    	session.setAttribute("uname", uname);
+		        response.sendRedirect("dashboard.jsp");
+			}
         else{			
         
             session.invalidate();
