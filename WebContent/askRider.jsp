@@ -16,10 +16,10 @@
 	Connection con = DriverManager.getConnection(url, "asingh", "test1234");
 
 	String requestNo=request.getParameter("requestNo");
-	String driverUsername = (String)session.getAttribute("uname");
+	String driverName = (String)session.getAttribute("uname");
 	
 	request.setAttribute("rideInfo1",requestNo);
-	request.setAttribute("rideInfo2",driverUsername);
+	request.setAttribute("rideInfo2",driverName);
 	
 	//Send a message to rider
 	
@@ -27,13 +27,32 @@
 	PreparedStatement ps2 = con.prepareStatement(riderName);
 	ps2.setString(1, requestNo);
 	ResultSet result = ps2.executeQuery();
-	result.next();
 	
+	result.next();	
 	String recipient=result.getString("riderName");
-	String message=("Ride request "+ requestNo +" accepted by "+ driverUsername + "\n" +%> <a href="acceptRide.jsp">Accept</a><%+ "\n"+%>
-	<a href="declineRide.jsp">Decline</a><%);
 	
-	out.print(message); //*replace with message to rider, used this for testing purposes 
+	String message= "Ride request" + requestNo + "accepted by" + driverName;
+	
+	con.close();
+	
+	String url2 = "jdbc:mysql://cs336instance.cpebridwlrpn.us-west-2.rds.amazonaws.com:3306/usermessages";
+	Class.forName("com.mysql.jdbc.Driver");
+	Connection con2 = DriverManager.getConnection(url2, "jjc372", "test1234");
+
+		PreparedStatement stmt = con2.prepareStatement("INSERT INTO " + recipient + "inbox(sender,message) VALUES (?,?)");
+		stmt.setString(1, driverName);
+		stmt.setString(2, message);
+		stmt.executeUpdate();
+		
+		PreparedStatement stmt2 = con2.prepareStatement("INSERT INTO " + driverName + "outbox(recipient,message) VALUES (?,?)");
+		stmt2.setString(1, recipient);
+		stmt2.setString(2, message);
+		stmt2.executeUpdate();
+	    out.println("Message successfully sent. <a href='messenger.jsp'>Click here to go to your Inbox.</a>");
+
+
+	//close the connection
+	con2.close();
 
 	
 
