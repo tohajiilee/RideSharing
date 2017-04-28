@@ -42,3 +42,10 @@ userTimeout.jsp - EZ
 
 
 
+to do:
+change reg page to remove userType
+in sql table just use admin,support,enduser
+
+login page - if support go to support dash
+if admin go to admin dash
+if enduser give option for rider or driver

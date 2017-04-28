@@ -32,9 +32,6 @@ Enter information below:
 	<tr>
 	<td>Phone Number</td><td><input type="text" name="ph#" ></td>
 	</tr>
-	<tr>
-	<td>User Type</td><td><input type="text" name="utype" ></td>
-	</tr>
 	</table>
 	<input type="submit" value="submit">
 	</form>
