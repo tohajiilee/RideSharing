@@ -83,9 +83,12 @@
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection(url, "asingh",
 					"test1234");
-
+			String uname = session.getAttribute("uname").toString();
 			PreparedStatement statement = con
-					.prepareStatement("SELECT R.requestNo,R.riderName,R.time,R.date,R.departure,R.destination FROM RequestRide R, OfferRide O WHERE R.time<=O.timeEnd AND R.time>=O.timeStart AND R.date=O.date AND R.accept=0");
+					.prepareStatement("SELECT DISTINCT * FROM RequestRide R, "+
+						" (SELECT DISTINCT * FROM OfferRide O)" + 
+						" WHERE" +
+						" R.time<=O.timeEnd AND R.time>=O.timeStart AND R.date=O.date AND R.accept=0 AND O.destination=R.destination");
 			ResultSet resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {

@@ -9,6 +9,11 @@
 </head>
 <h1>Support Dashboard</h1>
 <body>
+<div style="float: right">
+		<form method="post" action="logout.jsp">
+			<input type="submit" value="Logout" />
+		</form>
+	</div>
 <br>
 <br>
 <img border="0" src="/images/ad1.jpg"

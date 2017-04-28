@@ -38,6 +38,11 @@
 		String str = ("SELECT * FROM " + uname + "inbox");
 		PreparedStatement stmt = con.prepareStatement(str);
 		ResultSet result = stmt.executeQuery();
+		
+		stmt = con
+				.prepareStatement("UPDATE userNotifications SET notes = 0 WHERE username = ?");
+		stmt.setString(1, uname);
+		stmt.executeUpdate();
 
 		out.print('<' + "style" + '>' + "table, th, td {"
 				+ "border: 1px solid black;" + "}" + '<' + "/style" + '>'
@@ -83,10 +88,6 @@
 			out.print("</tr>");
 		}
 		out.print("</table>");
-
-		url = "jdbc:mysql://cs336instance.cpebridwlrpn.us-west-2.rds.amazonaws.com:3306/usermessages";
-		Class.forName("com.mysql.jdbc.Driver");
-		con = DriverManager.getConnection(url, "jjc372", "test1234");
 
 		uname = session.getAttribute("uname").toString();
 		str = ("SELECT * FROM " + uname + "outbox");

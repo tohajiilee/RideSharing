@@ -60,6 +60,12 @@ else{
 		stmt.setString(2, monthStr);
 		stmt.setInt(3, 0);
 		stmt.executeUpdate();
+		String userIn = uname + "inbox";
+		String userOut = uname + "outbox";
+		stmt = con.prepareStatement("CREATE TABLE Messaging." + userIn + " (sender VARCHAR(20) NOT NULL, message VARCHAR(500) NOT NULL)");
+		stmt.executeUpdate();
+		stmt = con.prepareStatement("CREATE TABLE Messaging." + userOut + " (recipient VARCHAR(20) NOT NULL, message VARCHAR(500) NOT NULL)");
+		stmt.executeUpdate();
 	}	
 	else{
 	    out.println("Registration unsuccessful: <a href='register.jsp'> Try again here </a>");

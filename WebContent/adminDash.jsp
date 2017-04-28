@@ -9,6 +9,11 @@
 </head>
 <h1>Admin Dashboard</h1>
 <body>
+<div style="float: right">
+		<form method="post" action="logout.jsp">
+			<input type="submit" value="Logout" />
+		</form>
+	</div>
 <br>
 <br>
 Create System Support Staff:
