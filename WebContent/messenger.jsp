@@ -29,9 +29,9 @@
 	</form>
 
 	<%
-		String url = "jdbc:mysql://cs336instance.cpebridwlrpn.us-west-2.rds.amazonaws.com:3306/usermessages";
+		String url = "jdbc:mysql://cs336db.cqgstqm2na1g.us-east-1.rds.amazonaws.com:3306/Messaging";
 		Class.forName("com.mysql.jdbc.Driver");
-		Connection con = DriverManager.getConnection(url, "jjc372",
+		Connection con = DriverManager.getConnection(url, "asingh",
 				"test1234");
 
 		String uname = session.getAttribute("uname").toString();
@@ -71,8 +71,12 @@
 			out.print(result.getString(2));
 			out.print("</td>");
 			out.print("<td><form method=\"post\" action=\"deleteMessage.jsp\">"
-					+ "<input type=\"hidden\" name=\"deleteName\" value=\"" + result.getString(1) + "\">"
-					+ "<input type=\"hidden\" name=\"deleteMsg\" value=\"" + result.getString(2) + "\">"
+					+ "<input type=\"hidden\" name=\"deleteName\" value=\""
+					+ result.getString(1)
+					+ "\">"
+					+ "<input type=\"hidden\" name=\"deleteMsg\" value=\""
+					+ result.getString(2)
+					+ "\">"
 					+ "<input type=\"hidden\" name=\"deleteType\" value=\"In\">"
 					+ "<input type=\"submit\" value=\"Delete\">"
 					+ "</form></td>");
@@ -119,8 +123,12 @@
 			out.print(result.getString(2));
 			out.print("</td>");
 			out.print("<td><form method=\"post\" action=\"deleteMessage.jsp\">"
-					+ "<input type=\"hidden\" name=\"deleteName\" value=\"" + result.getString(1) + "\">"
-					+ "<input type=\"hidden\" name=\"deleteMsg\" value=\"" + result.getString(2) + "\">"
+					+ "<input type=\"hidden\" name=\"deleteName\" value=\""
+					+ result.getString(1)
+					+ "\">"
+					+ "<input type=\"hidden\" name=\"deleteMsg\" value=\""
+					+ result.getString(2)
+					+ "\">"
 					+ "<input type=\"hidden\" name=\"deleteType\" value=\"Out\">"
 					+ "<input type=\"submit\" value=\"Delete\">"
 					+ "</form></td>");

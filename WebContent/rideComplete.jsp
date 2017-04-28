@@ -11,10 +11,9 @@
 </head>
 <body>
 	<%
-		String url = "jdbc:mysql://cs336db.cqgstqm2na1g.us-east-1.rds.amazonaws.com:3306/Users";
-		Class.forName("com.mysql.jdbc.Driver");
-		Connection con = DriverManager.getConnection(url, "asingh",
-				"test1234");
+	String url = "jdbc:mysql://cs336db.cqgstqm2na1g.us-east-1.rds.amazonaws.com:3306/Stats";
+	Class.forName("com.mysql.jdbc.Driver");
+	Connection con = DriverManager.getConnection(url, "asingh", "test1234");
 
 		String uname = session.getAttribute("uname").toString();
 		String str = ("SELECT * FROM userstats WHERE username=?");
