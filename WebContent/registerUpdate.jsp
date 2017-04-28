@@ -13,7 +13,7 @@
 <%
 
 //Create a connection string
-String url = "jdbc:mysql://cs336db.cqgstqm2na1g.us-east-1.rds.amazonaws.com:3306/Users";
+String url = "jdbc:mysql://cs336db.cqgstqm2na1g.us-east-1.rds.amazonaws.com:3306/";
 //Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
 Class.forName("com.mysql.jdbc.Driver");
 
@@ -29,7 +29,7 @@ String email = request.getParameter("email");
 String addr = request.getParameter("addr");
 String phonenum = request.getParameter("ph#");
 
-String str = ("SELECT * FROM Accounts WHERE username=?");
+String str = ("SELECT * FROM Users.Accounts WHERE username=?");
 PreparedStatement stmt = con.prepareStatement(str);
 stmt.setString(1, uname);
 
@@ -40,7 +40,7 @@ if (result.next()) {
 } 
 
 else{
-	stmt = con.prepareStatement("INSERT INTO Accounts(username,password,ruEmail,secEmail,address,phonenum) VALUES (?,?,?,?,?,?)");
+	stmt = con.prepareStatement("INSERT INTO Users.Accounts(username,password,ruEmail,secEmail,address,phonenum) VALUES (?,?,?,?,?,?)");
 	stmt.setString(1, uname);
 	stmt.setString(2, pass);
 	stmt.setString(3, ruemail);
@@ -51,6 +51,15 @@ else{
 
 	if(newAcc > 0 && !(pass==null || pass=="") ){
 		out.println("Registration successful: <a href='index.jsp'> Log in here </a>");
+		stmt = con.prepareStatement("INSERT INTO Stats.usermonthstats(username, month, points) VALUES (?,?,?)");
+		stmt.setString(1, uname);
+		Calendar cal = Calendar.getInstance();
+		int currMonth = cal.get(Calendar.MONTH) + 1;
+		int currYear = cal.get(Calendar.YEAR);
+		String monthStr = (currMonth + "-" + currYear);
+		stmt.setString(2, monthStr);
+		stmt.setInt(3, 0);
+		stmt.executeUpdate();
 	}	
 	else{
 	    out.println("Registration unsuccessful: <a href='register.jsp'> Try again here </a>");
