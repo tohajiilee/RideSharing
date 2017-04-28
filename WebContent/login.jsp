@@ -35,19 +35,20 @@
         	userType = result.getString(3);
 			userBehavior = result.getBoolean(4);
 			if(userBehavior == true) {
-				if(userType == "enduser"){ 
+				if(userType == "admin"){ 
 		            session.setAttribute("uname", uname);
-		            response.sendRedirect("dashboard.jsp");
+		            response.sendRedirect("adminDash.jsp");
 				}
 				else if(userType == "support"){ 
 		            session.setAttribute("uname", uname);
 		            response.sendRedirect("supportDash.jsp");
 				}
-				else if(userType == "admin"){ 
+				else { 
 		            session.setAttribute("uname", uname);
-		            response.sendRedirect("adminDash.jsp");
+		            out.print(userType);
+		            response.sendRedirect("dashboard.jsp");
 				}
-			}
+ 			}
         else{			
         
             session.invalidate();
