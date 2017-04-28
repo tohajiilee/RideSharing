@@ -113,7 +113,7 @@
 	<br>
 	<br>
 	<h2>Accepting a Request</h2>
-	<form method="post" action="acceptOffer.jsp">
+	<form method="post" action="askRider.jsp">
 		<table>
 			<tr>
 				<td>Request #</td>
@@ -164,8 +164,8 @@
 		%>
 	</table>
 
-
-
+<%
+con.close(); %>
 
 </body>
 </html>
