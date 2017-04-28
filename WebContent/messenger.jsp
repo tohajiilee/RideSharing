@@ -22,7 +22,6 @@
 			</tr>
 			<tr>
 				<td>Message:</td>
-				</br>
 				<td><textarea name="message" cols="50" rows="10"></textarea></td>
 			</tr>
 		</table>
