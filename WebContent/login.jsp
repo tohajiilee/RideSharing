@@ -34,12 +34,6 @@
         if (result.next() && !(uname==null || uname=="" || pass==null || pass=="")) {
         	userType = result.getString(3);
 			userBehavior = result.getBoolean(4);
-			if(userBehavior == true || userType == "enduser"){ //works with || but not && why
-	            session.setAttribute("uname", uname);
-	            out.print(userBehavior);
-	            out.print(userType);
-	            //response.sendRedirect("dashboard.jsp");
-			}
 			if(userBehavior == true) {
 				if(userType == "enduser"){ 
 		            session.setAttribute("uname", uname);
