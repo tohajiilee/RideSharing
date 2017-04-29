@@ -19,3 +19,14 @@ FOR EACH ROW
 IF(userType=`end-user`) THEN
 INSERT INTO Warning(`invalid`) VALUES ('y');
 END IF
+
+
+CREATE DEFINER=`asingh`@`%` TRIGGER `Users`.`Accounts_AFTER_INSERT` AFTER INSERT ON `Accounts` FOR EACH ROW
+BEGIN
+
+  INSERT INTO `Messaging`.`userNotifications`(username, notes)
+  VALUES (NEW.username, 0);
+  
+  INSERT INTO `Stats`.`userstats`(username, points)
+  VALUES (NEW.username, 0);
+END

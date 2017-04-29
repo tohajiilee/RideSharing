@@ -62,7 +62,7 @@ CREATE TABLE `Car` (
   `description` varchar(150) NOT NULL,
   `driverName` varchar(30) NOT NULL,
   PRIMARY KEY (`carNo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +71,7 @@ CREATE TABLE `Car` (
 
 LOCK TABLES `Car` WRITE;
 /*!40000 ALTER TABLE `Car` DISABLE KEYS */;
-INSERT INTO `Car` VALUES (1,'0','0','0','0','0','0','thedriver'),(2,'','','','','','test','test5');
+INSERT INTO `Car` VALUES (1,'0','0','0','0','0','0','thedriver'),(2,'','','','','','test','test5'),(3,'','','','','','test','admin');
 /*!40000 ALTER TABLE `Car` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +96,7 @@ CREATE TABLE `OfferRide` (
   PRIMARY KEY (`offerNo`),
   KEY `vehicleInfo` (`vehicleInfo`),
   CONSTRAINT `OfferRide_ibfk_1` FOREIGN KEY (`vehicleInfo`) REFERENCES `Car` (`carNo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,6 +105,7 @@ CREATE TABLE `OfferRide` (
 
 LOCK TABLES `OfferRide` WRITE;
 /*!40000 ALTER TABLE `OfferRide` DISABLE KEYS */;
+INSERT INTO `OfferRide` VALUES (3,'00:00:00','23:00:00','2017-04-28','College Avenue','College Avenue','thedriver',1,'3','0'),(4,'00:00:04','00:00:05','2017-05-06','Livingston','College Avenue','admin',3,'2','0'),(5,'00:00:05','00:00:06','2017-05-06','College Avenue','College Avenue','admin',3,'2','1'),(6,'05:00:00','06:00:00','2017-05-05','College Avenue','College Avenue','admin',2,'3','2');
 /*!40000 ALTER TABLE `OfferRide` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,7 +127,7 @@ CREATE TABLE `RequestRide` (
   `accept` varchar(1) DEFAULT '0',
   `driverName` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`requestNo`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,7 +136,7 @@ CREATE TABLE `RequestRide` (
 
 LOCK TABLES `RequestRide` WRITE;
 /*!40000 ALTER TABLE `RequestRide` DISABLE KEYS */;
-INSERT INTO `RequestRide` VALUES (1,'05:00:00','2017-04-28','College Avenue','College Avenue','therider','1','1','thedriver');
+INSERT INTO `RequestRide` VALUES (9,'02:00:00','2017-04-28','College Avenue','College Avenue','therider','1','1','thedriver');
 /*!40000 ALTER TABLE `RequestRide` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,6 +149,7 @@ DROP TABLE IF EXISTS `Warning`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Warning` (
   `reached` varchar(1) NOT NULL DEFAULT 'N',
+  `invalid` varchar(45) DEFAULT 'N',
   PRIMARY KEY (`reached`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -242,4 +244,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-28 23:19:13
+-- Dump completed on 2017-04-28 23:41:16
