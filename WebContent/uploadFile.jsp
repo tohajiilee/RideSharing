@@ -4,7 +4,6 @@
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <%
       String saveFile = "";
-	  String saveFileFull = "";
       String contentType = request.getContentType();
       if ((contentType != null) && (contentType.indexOf("multipart/form-data") >= 0)) {
             DataInputStream in = new DataInputStream(request.getInputStream());
@@ -30,22 +29,11 @@
             int boundaryLocation = file.indexOf(boundary, pos) - 4;
             int startPos = ((file.substring(0, pos)).getBytes()).length;
             int endPos = ((file.substring(0, boundaryLocation)).getBytes()).length;
-            
-
-            
-//             saveFileFull = "C:/Users/eric.GALLANT/Documents/spring17/cs336/WebContent/images/" + saveFile;
-            saveFileFull = saveFile;
-
-            //Goes to local workspace but not local project directory.. 
-            //Example: C:\Users\eric.GALLANT\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\RideSharing\images\filename.file
-            String relativeWebPath = "/images/";
-            String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
-            File ff = new File(absoluteDiskPath, saveFileFull);
-			out.print(absoluteDiskPath + saveFileFull +" added");
+            saveFile = "C:/Users/eric.GALLANT/Documents/spring17/cs336/WebContent/images/" + saveFile;
 //             getServletContext().getRealPath("/RideSharing/WebContent/images/");
 //             ServletContext context = request.getServletContext();
             
-//            File ff = new File(saveFileFull);
+            File ff = new File(saveFile);
 
         	//Create a connection string
         	String url = "jdbc:mysql://cs336db.cqgstqm2na1g.us-east-1.rds.amazonaws.com:3306/Users";
@@ -55,28 +43,23 @@
         	//Create a connection to your DB
         	Connection con = DriverManager.getConnection(url, "asingh", "test1234");
         	
-			String[] tokens = saveFile.split("\\.(?=[^\\.]+$)");
-			Arrays.toString(tokens);
-			String tokenPrefix = tokens[0];
-			out.print(tokenPrefix +" added");
-			
-         	String str = "INSERT INTO adTable(adName) VALUES (?)";
-         	PreparedStatement stmt = con.prepareStatement(str);
-         	
-         	stmt.setString(1,tokenPrefix);
-         	out.print(stmt.toString());
-        	stmt.execute();	
-         	
+        	String adname = request.getParameter("adname");
+        	out.print(adname);
+//         	String str = ("INSERT INTO adTable VALUES adName = ?");
+//          	PreparedStatement stmt = con.prepareStatement(str);
+//          	stmt.setString(1,adname);
+//         	stmt.execute();	
+        	
+         	out.print(adname +"added");
             FileOutputStream fileOut = new FileOutputStream(ff);
             fileOut.write(dataBytes, startPos, (endPos - startPos));
             fileOut.flush();
             fileOut.close();
-            
 %><br>
 
 <table>
       <tr>
-            <td><b>Uploaded file. Name: </b>
+            <td><b>You have successfully upload the file by the name of:</b>
             <%
                   out.println(saveFile);
                   }

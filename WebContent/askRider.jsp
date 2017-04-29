@@ -10,49 +10,49 @@
 </head>
 <body>
 	<%
-	String url = "jdbc:mysql://cs336db.cqgstqm2na1g.us-east-1.rds.amazonaws.com:3306/Users";
+	String url = "jdbc:mysql://cs336db.cqgstqm2na1g.us-east-1.rds.amazonaws.com:3306";
 	//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
 	Class.forName("com.mysql.jdbc.Driver");
 	Connection con = DriverManager.getConnection(url, "asingh", "test1234");
 
-	String requestNo=request.getParameter("requestNo");
+	String requestNo=(String)request.getParameter("requestNo");
+	String offerNo=(String)request.getParameter("offerNo");
 	String driverName = (String)session.getAttribute("uname");
-	
-	request.setAttribute("rideInfo1",requestNo);
-	request.setAttribute("rideInfo2",driverName);
 	
 	//Send a message to rider
 	
-	String riderName= "SELECT riderName FROM RequestRide WHERE requestNo=?";
+	String riderName= "SELECT riderName FROM Users.RequestRide WHERE requestNo=?";
 	PreparedStatement ps2 = con.prepareStatement(riderName);
 	ps2.setString(1, requestNo);
 	ResultSet result = ps2.executeQuery();
 	
 	result.next();	
 	String recipient=result.getString("riderName");
-	
-	String message= "Ride request" + requestNo + "accepted by" + driverName;
-	
-	con.close();
-	
-	String url2 = "jdbc:mysql://cs336instance.cpebridwlrpn.us-west-2.rds.amazonaws.com:3306/usermessages";
-	Class.forName("com.mysql.jdbc.Driver");
-	Connection con2 = DriverManager.getConnection(url2, "jjc372", "test1234");
 
-		PreparedStatement stmt = con2.prepareStatement("INSERT INTO " + recipient + "inbox(sender,message) VALUES (?,?)");
-		stmt.setString(1, driverName);
+	PreparedStatement stmt = con.prepareStatement("INSERT INTO Users.offeredRides(riderName,requestNo,offerNo) VALUES (?,?,?)");
+	stmt.setString(1,recipient);
+	stmt.setString(2,requestNo);
+	stmt.setString(3,offerNo);
+	stmt.executeUpdate();
+	
+	String message= "Ride request " + requestNo + " accepted. <a href=riderDashboard.jsp>See details here.</a>";
+
+		stmt = con.prepareStatement("INSERT INTO Messaging." + recipient + "inbox(sender,message,messageType) VALUES (?,?,?)");
+		stmt.setString(1, "System");
 		stmt.setString(2, message);
+		stmt.setInt(3, 0);
 		stmt.executeUpdate();
 		
-		PreparedStatement stmt2 = con2.prepareStatement("INSERT INTO " + driverName + "outbox(recipient,message) VALUES (?,?)");
-		stmt2.setString(1, recipient);
-		stmt2.setString(2, message);
-		stmt2.executeUpdate();
-	    out.println("Message successfully sent. <a href='messenger.jsp'>Click here to go to your Inbox.</a>");
+		stmt = con
+				.prepareStatement("UPDATE Messaging.userNotifications SET notes = notes + 1 WHERE username = ?");
+		stmt.setString(1, recipient);
+		stmt.executeUpdate();
+		
+	    out.println("Message successfully sent. <a href='dashboard.jsp'>Click here to go back to your Dashboard.</a>");
 
 
 	//close the connection
-	con2.close();
+	con.close();
 
 	
 

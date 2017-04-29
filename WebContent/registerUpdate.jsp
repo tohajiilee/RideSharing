@@ -62,7 +62,7 @@ else{
 		stmt.executeUpdate();
 		String userIn = uname + "inbox";
 		String userOut = uname + "outbox";
-		stmt = con.prepareStatement("CREATE TABLE Messaging." + userIn + " (sender VARCHAR(20) NOT NULL, message VARCHAR(500) NOT NULL)");
+		stmt = con.prepareStatement("CREATE TABLE Messaging." + userIn + " (sender VARCHAR(20) NOT NULL, message VARCHAR(500) NOT NULL, messageType INT NOT NULL DEFAULT 0)");
 		stmt.executeUpdate();
 		stmt = con.prepareStatement("CREATE TABLE Messaging." + userOut + " (recipient VARCHAR(20) NOT NULL, message VARCHAR(500) NOT NULL)");
 		stmt.executeUpdate();

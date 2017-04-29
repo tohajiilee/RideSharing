@@ -36,9 +36,21 @@
 			result = stmt.executeQuery();
 			result.next();
 			int currPoints = result.getInt("points");
-			str = ("Your points: " + currPoints);
+			str = ("Your overall points: " + currPoints);
+			stmt = con.prepareStatement("SELECT * FROM Stats.usermonthstats WHERE username = ? AND month = ?");
+			stmt.setString(1, uname);
+			Calendar cal = Calendar.getInstance();
+			int currMonth = cal.get(Calendar.MONTH) + 1;
+			int currYear = cal.get(Calendar.YEAR);
+			String monthStr = (currMonth + "-" + currYear);
+			stmt.setString(2, monthStr);
+			result = stmt.executeQuery();
+			if(result.next()){
+				out.print("Your points this month: " + result.getInt("points") + "<br>");
+			}
+			
 		}
-
+		out.println(str);
 		stmt = con
 				.prepareStatement("SELECT * FROM Messaging.userNotifications WHERE username = ?");
 		stmt.setString(1, uname);
@@ -48,7 +60,6 @@
 		out.println("<a href='messenger.jsp'>You have " + currNotes
 				+ " new notifications. "
 				+ "Click here to go to your Inbox.</a><br>");
-		out.println(str);
 		con.close();
 	%>
 	<h1>Select Option:</h1>

@@ -47,12 +47,13 @@
 			Connection con = DriverManager.getConnection(url, "asingh",
 					"test1234");
 
-			String uname3=(String)session.getAttribute("uname");		
-			
-			PreparedStatement statement3= con.prepareStatement("SELECT carNo,licensePlate,model,yr,maker,color,description FROM Car WHERE driverName=?");
-			
+			String uname3 = (String) session.getAttribute("uname");
+
+			PreparedStatement statement3 = con
+					.prepareStatement("SELECT carNo,licensePlate,model,yr,maker,color,description FROM Car WHERE driverName=?");
+
 			statement3.setString(1, uname3);
-			
+
 			ResultSet resultSet3 = statement3.executeQuery();
 
 			while (resultSet3.next()) {
@@ -77,25 +78,39 @@
 	<br>
 	<br>
 	<br>
-	
-	
-		<h2>Add A Car</h2>
+
+
+	<h2>Add A Car</h2>
 	<form method="post" action="addCar.jsp">
-	<table>
-	<tr><td>License Plate</td><td><input type="text" name="lisc"></td></tr>
-		<tr><td>Model</td><td><input type="text" name="model"></td></tr>
-			<tr><td>Year</td><td><input type="text" name="yr"></td></tr>
-				<tr><td>Maker</td><td><input type="text" name="maker"></td></tr>
-					<tr><td>Color</td><td><input type="text" name="color"></td></tr>
-					    <tr><td>Short Description </td><td><input type="text" placeholder="(Required)" name="description"></td></tr>	
-	</table>
-	 	<input type="submit" value="Add Car">
+		<table>
+			<tr>
+				<td>License Plate</td>
+				<td><input type="text" name="lisc"></td>
+			</tr>
+			<tr>
+				<td>Model</td>
+				<td><input type="text" name="model"></td>
+			</tr>
+			<tr>
+				<td>Year</td>
+				<td><input type="text" name="yr"></td>
+			</tr>
+			<tr>
+				<td>Maker</td>
+				<td><input type="text" name="maker"></td>
+			</tr>
+			<tr>
+				<td>Color</td>
+				<td><input type="text" name="color"></td>
+			</tr>
+			<tr>
+				<td>Short Description</td>
+				<td><input type="text" placeholder="(Required)"
+					name="description"></td>
+			</tr>
+		</table>
+		<input type="submit" value="Add Car">
 	</form>
-	
-	<br>
-	<br>
-	<br>
-	
 	
 	<h2>Delete A Car</h2>
 	<form method="post" action="deleteCar.jsp">
@@ -111,9 +126,10 @@
 	<br>
 	<br>
 	<br>
-	
-	
-	</form>
+
+	<br>
+	<br>
+	<br>
 	<h2>Offer A Ride</h2>
 	<form method="post" action="offerRide.jsp">
 		<table>
@@ -122,7 +138,7 @@
 				<td><input type="text" placeholder="00:00:00" name="timeF"></td>
 			</tr>
 			<tr>
-				<td>End Time </td>
+				<td>End Time</td>
 				<td><input type="text" placeholder="00:00:00" name="timeT"></td>
 			</tr>
 			<tr>
@@ -156,25 +172,25 @@
 				<td><input type="text" name="vehicleNumber"></td>
 			</tr>
 			<tr>
-			<td> Number of Passengers Limit </td>
-			<td> <input type="text" name="passengersLim"></td>
+				<td>Number of Passengers Limit</td>
+				<td><input type="text" name="passengersLim"></td>
 			</tr>
 			<tr>
-			<td> Recurring? </td>
-			<td> <select name="recurring">
-				<option value="0">No</option>
-				<option value="1">Every day</option>
-				<option value="2">Every week</option>		
-			</select></td>
+				<td>Recurring?</td>
+				<td><select name="recurring">
+						<option value="0">No</option>
+						<option value="1">Every day</option>
+						<option value="2">Every week</option>
+				</select></td>
 			</tr>
-		</table> 
- 	<input type="submit" value="Offer Ride">
+		</table>
+		<input type="submit" value="Offer Ride">
 	</form>
 
 	<br>
 	<br>
 	<br>
-	
+
 	<h2>Available Ride Requests</h2>
 	<table cellpadding="3" cellspacing="3" border="1">
 		<tr>
@@ -189,10 +205,13 @@
 
 		</tr>
 		<%
-
-
+			String uname = session.getAttribute("uname").toString();
 			PreparedStatement statement = con
-					.prepareStatement("SELECT R.requestNo,R.riderName,R.time,R.date,R.departure,R.destination FROM RequestRide R, OfferRide O WHERE R.time<=O.timeEnd AND R.time>=O.timeStart AND R.date=O.date AND R.accept=0 AND R.lim<=O.lim");
+					.prepareStatement("SELECT DISTINCT * FROM RequestRide R, "
+							+ " (SELECT DISTINCT * FROM OfferRide WHERE driverName = ?) O"
+							+ " WHERE"
+							+ " R.time<=O.timeEnd AND R.time>=O.timeStart AND R.date=O.date AND R.accept=0 AND R.lim<=O.lim AND R.destination=O.destination AND R.departure=O.departure");
+			statement.setString(1, uname);
 			ResultSet resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
@@ -204,8 +223,13 @@
 			<td><%=resultSet.getString("departure")%></td>
 			<td><%=resultSet.getString("destination")%></td>
 			<td><%=resultSet.getString("riderName")%></td>
-
-
+			<td><form method="post" action="askRider.jsp">
+					<input type="hidden" name="requestNo"
+						value=<%=resultSet.getInt("requestNo")%>> <input
+						type="hidden" name="offerNo"
+						value=<%=resultSet.getInt("offerNo")%>> <input
+						type="submit" value="Send Ride Offer">
+				</form></td>
 		</tr>
 
 		<%
@@ -228,7 +252,7 @@
 		</table>
 		<input type="submit" value="Accept Ride">
 	</form>
-	
+
 	<br>
 	<br>
 	<br>
@@ -273,14 +297,14 @@
 			}
 		%>
 	</table>
-	
+
 	<br>
 	<br>
 	<br>
 
-<%
-con.close(); %>
+	<%
+		con.close();
+	%>
 
 </body>
 </html>
-

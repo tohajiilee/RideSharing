@@ -75,6 +75,7 @@
 			//Print out current 
 			out.print(result.getString(2));
 			out.print("</td>");
+			if(result.getInt(3) < 1){
 			out.print("<td><form method=\"post\" action=\"deleteMessage.jsp\">"
 					+ "<input type=\"hidden\" name=\"deleteName\" value=\""
 					+ result.getString(1)
@@ -85,6 +86,7 @@
 					+ "<input type=\"hidden\" name=\"deleteType\" value=\"In\">"
 					+ "<input type=\"submit\" value=\"Delete\">"
 					+ "</form></td>");
+			}
 			out.print("</tr>");
 		}
 		out.print("</table>");

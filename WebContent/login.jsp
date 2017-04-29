@@ -54,6 +54,12 @@
             out.print(userType);
             out.print("This user has an incorrect username/password or has misbehaved and is locked out from our service.");
 
+            if(request.getAttribute("loginError")!=null)
+            { %>
+            	<script>
+    			
+				</script> <%
+            }
         }
         }
         

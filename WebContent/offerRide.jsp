@@ -30,60 +30,60 @@ try{
 			String temp=request.getParameter("recurring");
 			int recurring=Integer.parseInt(temp);
 	
-	
 			String insert = "INSERT INTO OfferRide(timeStart,timeEnd,date,departure,destination,driverName,vehicleInfo,lim,recurring)"
 					+ "VALUES (?,?,?,?,?,?,?,?,?)";
 			
 		 
 			PreparedStatement ps = con.prepareStatement(insert);
-			
+
+
 			ps.setString(1, timeStart);
 			ps.setString(2, timeEnd);
-
+			ps.setString(3, date);
 			ps.setString(4, dep);
 			ps.setString(5, dest);
 			ps.setString(6, driverName);
 			ps.setInt(7, Integer.parseInt(veh));
 			ps.setString(8, passengersLim);
 			ps.setString(9, rec);
-
+			
 			switch(recurring){
+			
+			case 0:
+				ps.setString(3, date);
+
+
+		
+			case 1:
+				java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd"); 
+				java.util.Date nDate = df.parse(date);
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(nDate);
+				cal.add(Calendar.DATE, +1);
 				
-				case 0:
-					ps.setString(3, date);
-
-
+				ps.setString(3, df.format(cal.getTime()));
 			
-				case 1:
-					java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd"); 
-					java.util.Date nDate = df.parse(date);
-					Calendar cal = Calendar.getInstance();
-					cal.setTime(nDate);
-					cal.add(Calendar.DATE, +1);
-					
-					ps.setString(3, df.format(cal.getTime()));
+				date = df.format(cal.getTime());
+
 				
-					date = df.format(cal.getTime());
+			case 2:
+				java.text.DateFormat df2 = new java.text.SimpleDateFormat("yyyy-MM-dd"); 
+				java.util.Date nDate2 = df2.parse(date);
+				Calendar cal2 = Calendar.getInstance();
+				cal2.setTime(nDate2);
+				cal2.add(Calendar.DATE, +7);
+				
+				ps.setString(3, df2.format(cal2.getTime()));
 
-					
-				case 2:
-					java.text.DateFormat df2 = new java.text.SimpleDateFormat("yyyy-MM-dd"); 
-					java.util.Date nDate2 = df2.parse(date);
-					Calendar cal2 = Calendar.getInstance();
-					cal2.setTime(nDate2);
-					cal2.add(Calendar.DATE, +7);
-					
-					ps.setString(3, df2.format(cal2.getTime()));
+				
+				date = df2.format(cal2.getTime());
 
-					
-					date = df2.format(cal2.getTime());
-	
-			
-			}
-			
+		
+		}
+		
+
+			//Run the query against the DB
 			ps.executeUpdate();
-					
-			
 			//close the connection
 			con.close();
 			 response.sendRedirect("driverDashboard.jsp");
