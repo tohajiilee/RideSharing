@@ -1,0 +1,9 @@
+DELIMITER $$
+
+CREATE 
+TRIGGER `LimitReached`
+AFTER INSERT on `RequestRide`
+FOR EACH ROW
+IF(requestNo=`2147483647`) THEN
+INSERT INTO Warning(`reached`) VALUES ('y');
+END IF
