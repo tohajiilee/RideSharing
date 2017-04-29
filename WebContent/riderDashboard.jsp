@@ -67,6 +67,14 @@
 			<td> Number of Passengers </td>
 			<td> <input type="text" name="passengersLim"></td>
 			</tr>
+						<tr>
+			<td> Recurring? </td>
+			<td> <select name="recurring">
+				<option value="0">No</option>
+				<option value="1">Every day</option>
+				<option value="2">Every week</option>		
+			</select></td>
+			</tr>
 		</table>
 		<input type="submit" value="Request Ride">
 	</form>
