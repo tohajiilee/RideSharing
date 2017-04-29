@@ -18,7 +18,6 @@ acceptOffer.jsp - AS
 addAds.jsp - EZ
 adminCreateSupport.jsp - EZ
 adminDash.jsp - EZ
-adsBackend.jsp - EZ
 changePassword.jsp - EZ
 dashboard.jsp - AS
 driverDashboard.jsp - AS
@@ -37,15 +36,7 @@ runRideQuery.jsp -
 runStatQuery.jsp - EZ
 sendMessage.jsp - 
 supportDash.jsp - EZ
+uploadFile.jsp - EZ
 userTimein.jsp - EZ
 userTimeout.jsp - EZ
 
-
-
-to do:
-change reg page to remove userType
-in sql table just use admin,support,enduser
-
-login page - if support go to support dash
-if admin go to admin dash
-if enduser give option for rider or driver
