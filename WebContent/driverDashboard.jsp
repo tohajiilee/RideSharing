@@ -83,6 +83,25 @@
 	<br>
 	<br>
 	<br>
+	
+	
+	<h2>Delete A Car</h2>
+	<form method="post" action="deleteCar.jsp">
+		<table>
+			<tr>
+				<td>Car #</td>
+				<td><input type="text" name="delCarNo"></td>
+			</tr>
+		</table>
+		<input type="submit" value="Delete Car">
+	</form>
+	
+	<br>
+	<br>
+	<br>
+	
+	
+	</form>
 	<h2>Offer A Ride</h2>
 	<form method="post" action="offerRide.jsp">
 		<table>
