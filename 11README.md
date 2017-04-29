@@ -21,24 +21,24 @@ adminCreateSupport.jsp - EZ
 adminDash.jsp - EZ
 changePassword.jsp - EZ
 dashboard.jsp - AS
-declineRide.jsp - 
+declineRide.jsp - JC
 deleteCar.jsp - AS
-deleteMessage.jsp
+deleteMessage.jsp - JC
 driverDashboard.jsp - AS
 index.jsp - AS
-leaderboards.jsp - 
+leaderboards.jsp - JC
 login.jsp - AS/EZ/
 logout.jsp - AS
-messenger.jsp - 
+messenger.jsp - JC
 offerRide.jsp - AS
 register.jsp - AS
 registerUpdate.jsp - AS
 requestRide.jsp - AS
-rideComplete.jsp - 
+rideComplete.jsp - JC
 riderDashboard.jsp - AS
-runRideQuery.jsp - 
+runRideQuery.jsp - JC
 runStatQuery.jsp - EZ
-sendMessage.jsp - 
+sendMessage.jsp - JC
 supportDash.jsp - EZ
 uploadFile.jsp - EZ
 userTimein.jsp - EZ
