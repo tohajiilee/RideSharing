@@ -35,7 +35,7 @@ Connection con = DriverManager.getConnection(url, "asingh", "test1234");
 		 response.sendRedirect("driverDashboard.jsp");
 		}
 		catch(Exception e){
-			out.print("Car add failed, try again");
+			out.print("Car delete failed, try again");
 		}
 
 %>
