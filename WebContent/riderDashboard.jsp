@@ -18,15 +18,15 @@
 	<form method="post" action="requestRide.jsp">
 		<table>
 			<tr>
-				<td>Departure Time (00:00:00)</td>
-				<td><input type="text" name="time"></td>
+				<td>Departure Time </td>
+				<td><input type="text" placeholder="00:00:00" name="time"></td>
 			</tr>
 			<tr>
-				<td>Date (YYYY-MM-DD)</td>
-				<td><input type="text" name="date"></td>
+				<td>Date </td>
+				<td><input type="text" placeholder="YYYY-MM-DD"name="date"></td>
 			</tr>
 			<tr>
-				<td>Origin:</td>
+				<td>Origin </td>
 				<td><select name="dep">
 						<option value="College Avenue">College Avenue Campus</option>
 						<option value="Cook/Douglass">Cook/Douglass Campus</option>
@@ -41,7 +41,7 @@
 				<td><input type="text" name="lotNum"></td>
 			</tr>
 			<tr>
-				<td>Destination:</td>
+				<td>Destination </td>
 				<td><select name="dest">
 						<option value="College Avenue">College Avenue Campus</option>
 						<option value="Cook/Douglass">Cook/Douglass Campus</option>
@@ -51,12 +51,20 @@
 							Avenue</option>
 				</select></td>
 			</tr>
+			<tr>
+			<td> Number of Passengers </td>
+			<td> <input type="text" name="passengersLim"></td>
+			</tr>
 		</table>
 		<input type="submit" value="Request Ride">
 	</form>
+	
+	<br>
+	<br>
+	<br>
 
 
-	<h2>Current Ride Requests</h2>
+	<h2>Your Open Ride Requests</h2>
 	<table cellpadding="3" cellspacing="3" border="1">
 		<tr>
 		</tr>
@@ -97,8 +105,8 @@
 	<br>
 	<br>
 	<br>
-	<br>
-	<h2>Scheduled Rides</h2>
+
+	<h2>Your Scheduled Rides</h2>
 	<table cellpadding="3" cellspacing="3" border="1">
 		<tr>
 		</tr>
@@ -130,8 +138,8 @@
 			<td><%=resultSet2.getInt("requestNo")%></td>
 			<td><%=resultSet2.getString("time")%></td>
 			<td><%=resultSet2.getString("date")%></td>
-			<td><%=resultSet2.getInt("departure")%></td>
-			<td><%=resultSet2.getInt("destination")%></td>
+			<td><%=resultSet2.getString("departure")%></td>
+			<td><%=resultSet2.getString("destination")%></td>
 			<td><%=resultSet2.getString("driverName")%></td>
 		</tr>
 
@@ -139,5 +147,8 @@
 			}
 		%>
 	</table>
+	<br>
+	<br>
+	<br>
 </body>
 </html>

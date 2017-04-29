@@ -20,11 +20,12 @@
 			String dep = request.getParameter("dep");
 			String dest = request.getParameter("dest");
 			String riderName = (String)session.getAttribute("uname");
+			String passengersLim= request.getParameter("passengersLim");
 
 
 	
-			String insert = "INSERT INTO RequestRide(time,date,departure,destination,riderName)"
-					+ "VALUES (?,?,?,?,?)";
+			String insert = "INSERT INTO RequestRide(time,date,departure,destination,riderName,lim)"
+					+ "VALUES (?,?,?,?,?,?)";
 			//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 			PreparedStatement ps = con.prepareStatement(insert);
 
@@ -34,6 +35,7 @@
 			ps.setString(3, dep);
 			ps.setString(4, dest);
 			ps.setString(5, riderName);
+			ps.setString(6,passengersLim);
 
 			//Run the query against the DB
 			ps.executeUpdate();

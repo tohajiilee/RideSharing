@@ -14,23 +14,92 @@
 			<input type="submit" value="Logout" />
 		</form>
 	</div>
+		<h2>Your Cars</h2>
+	<table cellpadding="3" cellspacing="3" border="1">
+		<tr>
+		</tr>
+		<tr>
+			<th><b>Car #</b></th>
+			<th><b>License Plate</b></th>
+			<th><b>Model</b></th>
+			<th><b>Year</b></th>
+			<th><b>Maker</b></th>
+			<th><b>Color</b></th>
+			<th><b>Description</b></th>
 
+		</tr>
+		<%
+			String url = "jdbc:mysql://cs336db.cqgstqm2na1g.us-east-1.rds.amazonaws.com:3306/Users";
+			//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection(url, "asingh",
+					"test1234");
+
+			String uname3=(String)session.getAttribute("uname");		
+			
+			PreparedStatement statement3= con.prepareStatement("SELECT carNo,licensePlate,model,yr,maker,color,description FROM Car WHERE driverName=?");
+			
+			statement3.setString(1, uname3);
+			
+			ResultSet resultSet3 = statement3.executeQuery();
+
+			while (resultSet3.next()) {
+		%>
+		<tr>
+			<td><%=resultSet3.getInt("carNo")%></td>
+			<td><%=resultSet3.getString("licensePlate")%></td>
+			<td><%=resultSet3.getString("model")%></td>
+			<td><%=resultSet3.getString("yr")%></td>
+			<td><%=resultSet3.getString("maker")%></td>
+			<td><%=resultSet3.getString("color")%></td>
+			<td><%=resultSet3.getString("description")%></td>
+
+		</tr>
+
+		<%
+			}
+		%>
+
+	</table>
+
+	<br>
+	<br>
+	<br>
+	
+	
+		<h2>Add A Car</h2>
+	<form method="post" action="addCar.jsp">
+	<table>
+	<tr><td>License Plate</td><td><input type="text" name="lisc"></td></tr>
+		<tr><td>Model</td><td><input type="text" name="model"></td></tr>
+			<tr><td>Year</td><td><input type="text" name="yr"></td></tr>
+				<tr><td>Maker</td><td><input type="text" name="maker"></td></tr>
+					<tr><td>Color</td><td><input type="text" name="color"></td></tr>
+					    <tr><td>Short Description </td><td><input type="text" placeholder="(Required)" name="description"></td></tr>	
+	</table>
+	 	<input type="submit" value="Add Car">
+	</form>
+	
+	<br>
+	<br>
+	<br>
+	<h2>Offer A Ride</h2>
 	<form method="post" action="offerRide.jsp">
 		<table>
 			<tr>
-				<td>From (00:00:00)</td>
-				<td><input type="text" name="timeF"></td>
+				<td>Start Time</td>
+				<td><input type="text" placeholder="00:00:00" name="timeF"></td>
 			</tr>
 			<tr>
-				<td>To (00:00:00)</td>
-				<td><input type="text" name="timeT"></td>
+				<td>End Time </td>
+				<td><input type="text" placeholder="00:00:00" name="timeT"></td>
 			</tr>
 			<tr>
-				<td>Date (YYYY-MM-DD)</td>
-				<td><input type="text" name="date"></td>
+				<td>Date</td>
+				<td><input type="text" placeholder="YYYY-MM-DD" name="date"></td>
 			</tr>
 			<tr>
-				<td>Origin:</td>
+				<td>Origin</td>
 				<td><select name="dep">
 						<option value="College Avenue">College Avenue Campus</option>
 						<option value="Cook/Douglass">Cook/Douglass Campus</option>
@@ -41,7 +110,7 @@
 				</select></td>
 			</tr>
 			<tr>
-				<td>Destination:</td>
+				<td>Destination</td>
 				<td><select name="dest">
 						<option value="College Avenue">College Avenue Campus</option>
 						<option value="Cook/Douglass">Cook/Douglass Campus</option>
@@ -52,18 +121,29 @@
 				</select></td>
 			</tr>
 			<tr>
-				<td>Vehicle information:</td>
-				<td><input type="text" name="veh"></td>
+				<td>Car Number</td>
+				<td><input type="text" name="vehicleNumber"></td>
 			</tr>
-		</table>
-		<br> Recurring? <select name="recurring" size=1>
-			<option value="0">No</option>
-			<option value="1">Everyday</option>
-			<option value="1">Every week</option>
-		</select>&nbsp;<br> <br> <input type="submit" value="Offer Ride">
+			<tr>
+			<td> Number of Passengers Limit </td>
+			<td> <input type="text" name="passengersLim"></td>
+			</tr>
+			<tr>
+			<td> Recurring? </td>
+			<td> <select name="recurring">
+				<option value="0">No</option>
+				<option value="1">Every day</option>
+				<option value="2">Every week</option>		
+			</select></td>
+			</tr>
+		</table> 
+ 	<input type="submit" value="Offer Ride">
 	</form>
 
 	<br>
+	<br>
+	<br>
+	
 	<h2>Available Ride Requests</h2>
 	<table cellpadding="3" cellspacing="3" border="1">
 		<tr>
@@ -78,17 +158,10 @@
 
 		</tr>
 		<%
-			String url = "jdbc:mysql://cs336db.cqgstqm2na1g.us-east-1.rds.amazonaws.com:3306/Users";
-			//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection(url, "asingh",
-					"test1234");
-			String uname = session.getAttribute("uname").toString();
+
+
 			PreparedStatement statement = con
-					.prepareStatement("SELECT DISTINCT * FROM RequestRide R, "+
-						" (SELECT DISTINCT * FROM OfferRide O)" + 
-						" WHERE" +
-						" R.time<=O.timeEnd AND R.time>=O.timeStart AND R.date=O.date AND R.accept=0 AND O.destination=R.destination");
+					.prepareStatement("SELECT R.requestNo,R.riderName,R.time,R.date,R.departure,R.destination FROM RequestRide R, OfferRide O WHERE R.time<=O.timeEnd AND R.time>=O.timeStart AND R.date=O.date AND R.accept=0 AND R.lim<=O.lim");
 			ResultSet resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
@@ -112,10 +185,9 @@
 
 	<br>
 	<br>
+	<br>
 
-	<br>
-	<br>
-	<h2>Accepting a Request</h2>
+	<h2>Accept a Request</h2>
 	<form method="post" action="askRider.jsp">
 		<table>
 			<tr>
@@ -125,9 +197,13 @@
 		</table>
 		<input type="submit" value="Accept Ride">
 	</form>
+	
+	<br>
+	<br>
+	<br>
 
 
-	<h2>Scheduled Rides</h2>
+	<h2>Your Scheduled Drives</h2>
 	<table align="left" cellpadding="3" cellspacing="3" border="1">
 		<tr>
 		</tr>
@@ -166,6 +242,10 @@
 			}
 		%>
 	</table>
+	
+	<br>
+	<br>
+	<br>
 
 <%
 con.close(); %>
