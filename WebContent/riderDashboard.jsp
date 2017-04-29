@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<img src="<%=request.getContextPath()%>/images/ad1.jpg" width="550" height="200"/>
+<a href="https://www.ricksteves.com/europe/italy"><img src="<%=request.getContextPath()%>/images/ad1.jpg" width="550" height="200"/></a>
 	<%
 		Class.forName("com.mysql.jdbc.Driver");
 		String dburl="jdbc:mysql://cs336db.cqgstqm2na1g.us-east-1.rds.amazonaws.com:3306/Users";
