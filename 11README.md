@@ -14,16 +14,21 @@ Password: adminadmin
 Amazon ec2 credentials: 
 
 
-acceptOffer.jsp - AS
+acceptRide.jsp - AS
 addAds.jsp - EZ
+addCar.jsp - 
 adminCreateSupport.jsp - EZ
 adminDash.jsp - EZ
 changePassword.jsp - EZ
 dashboard.jsp - AS
+declineRide.jsp - 
+deleteCar.jsp - 
+deleteMessage.jsp
 driverDashboard.jsp - AS
 index.jsp - AS
 leaderboards.jsp - 
 login.jsp - AS/EZ/
+logout.jsp - 
 messenger.jsp - 
 offerRide.jsp - AS
 register.jsp - AS
@@ -31,7 +36,6 @@ registerUpdate.jsp - AS
 requestRide.jsp - AS
 rideComplete.jsp - 
 riderDashboard.jsp - AS
-riding.jsp - 
 runRideQuery.jsp - 
 runStatQuery.jsp - EZ
 sendMessage.jsp - 
