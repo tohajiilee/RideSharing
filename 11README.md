@@ -19,6 +19,7 @@ addAds.jsp - EZ
 addCar.jsp - AS
 adminCreateSupport.jsp - EZ
 adminDash.jsp - EZ
+askRider.jsp - JC
 changePassword.jsp - EZ
 dashboard.jsp - AS
 declineRide.jsp - JC
