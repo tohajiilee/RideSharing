@@ -12,6 +12,11 @@
 <a href="https://www.ricksteves.com/europe/italy"><img src="<%=request.getContextPath()%>/images/ad2.jpg" width="550" height="200"/></a>
 <br>
 <br>
+
+	<div style="float: right">
+		<form method="post" action="logout.jsp">
+			<input type="submit" value="Logout" />
+		</form>
 	<%
 		Class.forName("com.mysql.jdbc.Driver");
 		String dburl="jdbc:mysql://cs336db.cqgstqm2na1g.us-east-1.rds.amazonaws.com:3306/Users";
@@ -20,10 +25,6 @@
 		PreparedStatement ad = con1.prepareStatement(adIncrement);
 		ad.executeUpdate();
 	%>
-	<div style="float: right">
-		<form method="post" action="logout.jsp">
-			<input type="submit" value="Logout" />
-		</form>
 	</div>
 		<h2>Your Cars</h2>
 	<table cellpadding="3" cellspacing="3" border="1">
