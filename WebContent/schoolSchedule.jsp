@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,6 +12,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="https://en.wikipedia.org/wiki/Frostbite_(game_engine)"><img src="<%=request.getContextPath()%>/images/n7.png" width="550" height="200"/></a>
+
+	<%
+		Class.forName("com.mysql.jdbc.Driver");
+		String dburl="jdbc:mysql://cs336db.cqgstqm2na1g.us-east-1.rds.amazonaws.com:3306/Users";
+		Connection con1 = DriverManager.getConnection(dburl, "asingh", "test1234");
+		String adIncrement = ("UPDATE adTable SET adShown = adShown + 1 WHERE adName = 'ad1'");
+		PreparedStatement ad = con1.prepareStatement(adIncrement);
+		ad.executeUpdate();
+	%>
 
 <script type="text/javascript">
 function createTable()
