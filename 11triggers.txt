@@ -1,0 +1,21 @@
+DELIMITER $$
+
+CREATE 
+TRIGGER `LimitReached`
+AFTER INSERT on `RequestRide`
+FOR EACH ROW
+IF(requestNo=`2147483647`) THEN
+INSERT INTO Warning(`reached`) VALUES ('y');
+END IF
+
+
+
+DELIMITER $$
+
+CREATE 
+TRIGGER `InvalidUserType`
+AFTER INSERT on `Accounts`
+FOR EACH ROW
+IF(userType=`end-user`) THEN
+INSERT INTO Warning(`invalid`) VALUES ('y');
+END IF
