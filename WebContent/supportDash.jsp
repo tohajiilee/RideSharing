@@ -77,7 +77,7 @@ increment ad in adTable everytime it is accessed with a trigger or something-->
             <td><b>Choose the file To Upload:</b></td>
             <td><INPUT NAME="file" TYPE="file"></td>
       </tr>
-      <tr><td>Enter ad Name (e.g. "n7.png" would be entered as "n7"):</td><td><input type="text" name="adname"></td></tr>
+      <!-- tr><td>Enter ad Name (e.g. "n7.png" would be entered as "n7"):</td><td><input type="text" name="adname"></td></tr-->
       <tr>
             <td colspan="2" ><input type="submit" value="Send File"></td>
       </tr>
