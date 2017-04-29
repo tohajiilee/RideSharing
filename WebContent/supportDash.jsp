@@ -66,22 +66,23 @@ This means that this user will be unable to login when that username/pw is input
 rng show ad 1 or 2, increment count
 Something like import jpeg to fit into a pre-designed div 
 increment ad in adTable everytime it is accessed with a trigger or something-->
-<form method="post" action="addAds.jsp">
-	<table>
-	<tr>
-	<td>Add an Ad:</td>
-	</tr>
-	</table>
-	<input type="file" name ="adname" accept="image/">
-	
-</form>
-<h3>File Upload:</h3>
-Select a file to upload: <br />
-<form action="UploadServlet" method="post"
-                        enctype="multipart/form-data">
-<input type="file" name="file" size="50" />
-<br />
-<input type="submit" value="Upload File" />
+
+<FORM ENCTYPE="multipart/form-data" ACTION="uploadFile.jsp" METHOD=POST>
+<br>
+<br>
+<br>
+<table border="0" >
+      <tr><td colspan="2"> <B>Upload an Image File</B></td></tr>
+      <tr>
+            <td><b>Choose the file To Upload:</b></td>
+            <td><INPUT NAME="file" TYPE="file"></td>
+      </tr>
+      <tr><td>Enter ad Name (e.g. "n7.png" would be entered as "n7"):</td><td><input type="text" name="adname"></td></tr>
+      <tr>
+            <td colspan="2" ><input type="submit" value="Send File"></td>
+      </tr>
+      </table>
+
 </form>
 
 <br>
@@ -89,6 +90,9 @@ Select a file to upload: <br />
 
 <!-- button for display statistical query -->
 <form method="post" action="runStatQuery.jsp"> 
+<table>
+	<tr><td>Run an Ad Query:</td></tr>
+</table>
 <input type="submit" value="Run Ad Query">
 </form>
 <br>
