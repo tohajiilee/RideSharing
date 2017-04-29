@@ -16,19 +16,19 @@ Amazon ec2 credentials:
 
 acceptRide.jsp - AS
 addAds.jsp - EZ
-addCar.jsp - 
+addCar.jsp - AS
 adminCreateSupport.jsp - EZ
 adminDash.jsp - EZ
 changePassword.jsp - EZ
 dashboard.jsp - AS
 declineRide.jsp - 
-deleteCar.jsp - 
+deleteCar.jsp - AS
 deleteMessage.jsp
 driverDashboard.jsp - AS
 index.jsp - AS
 leaderboards.jsp - 
 login.jsp - AS/EZ/
-logout.jsp - 
+logout.jsp - AS
 messenger.jsp - 
 offerRide.jsp - AS
 register.jsp - AS
