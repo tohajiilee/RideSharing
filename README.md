@@ -7,8 +7,6 @@ A ride-sharing database application for CS336.
 
 http://ec2-54-236-4-37.compute-1.amazonaws.com:8080/RideSharing/index.jsp
 
-Amazon ec2 credentials: 
-
 
 acceptRide.jsp - AS
 addAds.jsp - EZ
